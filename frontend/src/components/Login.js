@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from 'react'
 import { Form, FormGroup, Label, Button, Input, Container } from 'reactstrap';
-import userAPI from '../../Api/userAPI'
+import userAPI from '../Api/userAPI'
 import {Redirect} from 'react-router-dom'
 import './Connexion.css'
 
-class Login extends Component {
+class loginForm extends Component {
 
     state = {
         email: "",
@@ -35,7 +35,7 @@ class Login extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        const {email, password, redirection} = this.state
+        const {email, password} = this.state
 
         if(!this.verification()){
             return "Le formulaire contient des erreurs"
@@ -83,4 +83,4 @@ class Login extends Component {
     }
 }
 
-export default Login
+export default loginForm
