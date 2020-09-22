@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { Form, FormGroup, Label, Button, Input, Container } from 'reactstrap';
-import userAPI from '../Api/userAPI'
+import userAPI from '../../../Api/userAPI'
 import {Redirect} from 'react-router-dom'
 import './Connexion.css'
 
@@ -27,7 +27,7 @@ class loginForm extends Component {
         }
 
         if(!password || password.length < 8 ){
-            errors["password"] = "Le mot de passe doit avoir au moins 8 caractères";
+            errors["password"] = "Le mot de passe doit contenir au moins 8 caractères";
             this.setState({formIsValid: false})
         }
         return isValidForm;

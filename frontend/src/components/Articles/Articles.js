@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
-import API from '../Api/articlesAPI'
-import Article from './Article';
+import API from '../../Api/articlesAPI'
+import Article from './Article/Article';
 
 const headers = {
     'Authorization': localStorage.getItem('token')
@@ -32,6 +32,7 @@ class allArticles extends Component {
         const liste = Object.keys(posts)
         .map(id => (
             <Article 
+            key={posts[id].id}
             profilePicture={posts[id].User.profilePicture}
             name={posts[id].User.name}
             likes={posts[id].likes}
