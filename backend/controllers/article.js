@@ -16,11 +16,13 @@ exports.createArticle = (req,res) => {
         .then(user => {
             // user not found
             if(!user){
-                return res.status(404).json({ error : "User not found"});
+                return res.status(404).json({ error : "User not found" });
             }
             // get form input
-            let content = req.body.content
+            let content = req.body.content;
             let attachment = req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : null;
+             
+            //let content = req.file ? JSON.parse(req.body.content) : req.body.content
 
             // create article
             models.Article.create({ 

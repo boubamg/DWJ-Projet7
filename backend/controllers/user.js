@@ -103,9 +103,9 @@ exports.login = (req,res) => {
                         { expiresIn: '24h'})
                 })
             })
-            .catch(err => res.status(500).json({ error : err }))
+            .catch(err => res.status(500).json({ error : `${err}` }))
         })
-        .catch(err => res.status(500).json({ error : err }))
+        .catch(err => res.status(500).json({ error : `${err}` }))
 }
 
 // get own profile

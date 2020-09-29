@@ -1,13 +1,13 @@
 import React from 'react'
 
 
-const Article = ({profilePicture, name, likes, date, attachment, content}) => {
+const Article = ({profilePicture, name, likes, date, attachment, content}, alt) => {
 
     return (
         <div className="card">
             <div className="side">
                 <div className="creator">
-                    <img src={profilePicture} alt="Photo de profil" />
+                    <img src={profilePicture} alt="profile image"/>
                     <span className="name">{name}</span>
                 </div>
                 <div className="likes">
@@ -18,7 +18,7 @@ const Article = ({profilePicture, name, likes, date, attachment, content}) => {
             
             <div className="content">
                 <div className="attachment">
-                <img src={attachment} alt="Photo d'un post"/>
+                <img src={attachment} alt="image" />
                 </div>
                 <div className="text">{content}</div>
             </div>
