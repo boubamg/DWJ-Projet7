@@ -1,9 +1,11 @@
 import React from 'react'
+import './Article.css'
 
 
-const Article = ({profilePicture, name, likes, date, attachment, content}, alt) => {
+const Article = ({id, profilePicture, name, likes, date, attachment, content}) => {
 
     return (
+       
         <div className="card">
             <div className="side">
                 <div className="creator">

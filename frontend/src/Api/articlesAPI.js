@@ -11,6 +11,18 @@ export default {
 
     postArticles : (data, headers) => {
         return axios.post(baseUrl + "/", data , {headers} )
+    },
+
+    getOneArticle : (id, headers) => {
+        return axios.get(baseUrl + "/" + id, {headers} )
+    },
+
+    putArticle : (id, data, headers) => {
+        return axios.put(baseUrl + "/" + id, data , {headers} )
+    },
+
+    deleteArticle : (id, headers) => {
+        return axios.delete(baseUrl + "/" + id, {headers} )
     }
 
 }

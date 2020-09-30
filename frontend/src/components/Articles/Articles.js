@@ -31,15 +31,17 @@ class allArticles extends Component {
 
         const liste = Object.keys(posts)
         .map(id => (
+            <a href={'/post/' + posts[id].id}>
             <Article 
             key={posts[id].id}
+            id={posts[id].id}
             profilePicture={posts[id].User.profilePicture}
             name={posts[id].User.name}
             likes={posts[id].likes}
-            // date={posts[id].createdAt.}
             content={posts[id].content} 
             attachment={posts[id].attachment}
             />
+            </a>
         ))
 
         return (

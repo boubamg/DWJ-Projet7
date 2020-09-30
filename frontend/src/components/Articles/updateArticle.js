@@ -7,7 +7,7 @@ const headers = {
     'Authorization': localStorage.getItem('token'),
 };
 
-class createArticle extends Component {
+class updateArticle extends Component {
 
     state = {
         errors : [],
@@ -23,10 +23,13 @@ class createArticle extends Component {
         data.append("content", this.state.content);
         data.append("attachment", this.state.attachment);
 
-        articlesAPI.postArticles(data, headers)
+        const queryString =  window.location.href;
+        let id = queryString.split('/update/')[1]
+
+        articlesAPI.putArticle(id, data, headers)
             .then(() => {
-                console.log("Article ajouté")
-               this.setState({ redirect: true })
+                console.log("Article mis à jour")
+                this.setState({ redirect: true })
             })
             .catch(err => console.log(err))
     }
@@ -57,4 +60,4 @@ class createArticle extends Component {
     }
 }
 
-export default createArticle
+export default updateArticle

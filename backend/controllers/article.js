@@ -20,9 +20,7 @@ exports.createArticle = (req,res) => {
             }
             // get form input
             let content = req.body.content;
-            let attachment = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
-             
-            //let content = req.file ? JSON.parse(req.body.content) : req.body.content
+            let attachment = req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}`: null;
 
             // create article
             models.Article.create({ 
