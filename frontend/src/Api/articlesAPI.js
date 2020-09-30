@@ -9,8 +9,8 @@ export default {
     return axios.get(baseUrl + "/", {headers})
     },
 
-    postArticles : (attachment, headers) => {
-        return axios.post(baseUrl + "/", {attachment} , {headers} )
+    postArticles : (data, headers) => {
+        return axios.post(baseUrl + "/", data , {headers} )
     }
 
 }

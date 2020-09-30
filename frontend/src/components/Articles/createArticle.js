@@ -19,17 +19,11 @@ class createArticle extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
 
-        let data = new FormData(event.target);
-
+        let data = new FormData();
         data.append("content", this.state.content);
         data.append("attachment", this.state.attachment);
 
-        let allData = {}
-        for (let [key, value] of data) { 
-            allData[key] = value
-        }
-
-        articlesAPI.postArticles(allData["content"], allData["attachment"], headers)
+        articlesAPI.postArticles(data, headers)
             .then(() => {
                 console.log("Article ajouté")
                this.setState({ redirect: true })
@@ -42,37 +36,9 @@ class createArticle extends Component {
         this.setState({ [name]: value })
     }
 
-    handleOnFileChange = (e) => {
-        
+    handleOnFileChange = (e) => {  
         this.setState({ attachment: e.target.files[0] });
-        console.log(this.state.attachment)
-
     }
-
-    fileData = () => { 
-     
-        if (this.state.attachment) { 
-            
-          return ( 
-            <div> 
-              <h2>File Details:</h2> 
-              <p>File Name: {this.state.attachment.name}</p> 
-              <p>File Type: {this.state.attachment.type}</p> 
-              <p> 
-                Last Modified:{" "} 
-                {this.state.attachment.lastModifiedDate.toDateString()} 
-              </p> 
-            </div> 
-          ); 
-        } else { 
-          return ( 
-            <div> 
-              <br /> 
-              <h4>Choose before Pressing the Upload button</h4> 
-            </div> 
-          ); 
-        } 
-      }; 
 
     render () {
 
@@ -98,7 +64,6 @@ class createArticle extends Component {
                         </FormGroup>
                         <Button type="submit" color="secondary" size="lg" block>Publier</Button>
                     </Form>
-                    {this.fileData()}
                 </Container>
             </Fragment>
         )
