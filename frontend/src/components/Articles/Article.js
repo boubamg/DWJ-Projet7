@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react'
+import {Redirect} from 'react-router-dom'
 import API from '../../Api/articlesAPI'
 import Article from '../Articles/Article/Article'
+import articlesAPI from '../../Api/articlesAPI'
 
 const headers = {
     'Authorization': localStorage.getItem('token')
@@ -12,7 +14,8 @@ class oneArticle extends Component {
         post: {},
         isLoaded: false,
         error : null,
-        canUpdate: false
+        canUpdate: false,
+        redirect: false
     }
 
     componentDidMount(){
@@ -43,9 +46,23 @@ class oneArticle extends Component {
         return this.state.canUpdate
     }
 
+    handleDelete = () => {
+        articlesAPI.deleteArticle(this.state.post.id, headers)
+        .then(() => console.log("It was deleted"))
+        .catch(err => console.log(err))
+
+        this.setState({redirect: true})
+    }
+
     render () {
 
-        const {post} = this.state
+        const {post, redirect} = this.state
+
+        if(redirect){
+            return <Redirect to='/post' />
+        }
+
+        
 
         let article = 
             <Article
@@ -61,6 +78,7 @@ class oneArticle extends Component {
             <Fragment> 
                 {article}
                 {this.userCanUpdate ? <a href={'/post/update/' + post.id}>Update</a> : null}
+                {this.userCanUpdate ? <button onClick={this.handleDelete}>Delete</button> : null}
             </Fragment>
         )
     }

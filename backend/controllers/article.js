@@ -194,7 +194,7 @@ exports.deleteArticle = (req,res) => {
                     }
 
                      // verify if user is article creator or administrator
-                    if(user.id !== article.UserId || !user.isAdmin) {
+                    if(user.id !== article.UserId && !user.isAdmin) {
                         return res.status(401).json({ error : "You cannot do this" })
                     }
 
