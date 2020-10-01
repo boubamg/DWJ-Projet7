@@ -10,7 +10,7 @@ import createArticle from './components/Articles/createArticle';
 import updateArticle from './components/Articles/updateArticle'; 
 
 
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom'
 
 class App extends Component {
   
@@ -20,6 +20,26 @@ class App extends Component {
 
       <Fragment>
         <Router>
+
+          <nav className="navbar navbar-expand-lg navbar-light bg-light">
+              <a className="navbar-brand" href="/post">Navbar</a>
+
+              {localStorage.getItem('token') ?
+               <ul className="navbar-nav">
+                <li><Link to={'/post'} className="nav-link">Accueil</Link></li>
+                <li><Link to={'/post/create'} className="nav-link">Poster</Link></li>
+                <li><Link onClick={() => {localStorage.clear()}} to={'/'} className="nav-link">Déconnexion</Link></li>
+                {/* dropdown for profile createArticle logout */}
+              </ul>
+             :
+              <ul className="navbar-nav">
+                <li><Link to={'/'} className="nav-link"> Se connecter </Link></li>
+                <li><Link to={'/signup'} className="nav-link">S'inscrire</Link></li>
+              </ul> 
+              }    
+
+          </nav>
+
           <Switch>
             
             <Route exact path='/' component={Login} />
