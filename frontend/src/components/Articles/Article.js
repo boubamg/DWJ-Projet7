@@ -62,8 +62,6 @@ class oneArticle extends Component {
             return <Redirect to='/post' />
         }
 
-        
-
         let article = 
             <Article
             id={post.id}
