@@ -21,9 +21,10 @@ const Root = () => (
       <Route exact path='/' component={Login} />
       <Route exact path='/signup' component={Signup} />
       <Route exact path='/post' component={Articles} />
-      <Route path='/post/:id' component={Article} />
-      <Route path='/post/update/:id' component={updateArticle} />
       <Route exact path='/post/create' component={createArticle} />
+      <Route exact path='/post/:id' component={Article} />
+      <Route exact path='/post/update/:id' component={updateArticle} />
+     
       
     </Switch>
   </Router>

@@ -34,7 +34,6 @@ class allArticles extends Component {
             <a href={'/post/' + posts[id].id}>
             <Article 
             key={posts[id].id}
-            id={posts[id].id}
             profilePicture={posts[id].User.profilePicture}
             name={posts[id].User.name}
             likes={posts[id].likes}

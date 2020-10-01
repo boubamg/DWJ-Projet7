@@ -2,7 +2,7 @@ import React from 'react'
 import './Article.css'
 
 
-const Article = ({id, profilePicture, name, likes, date, attachment, content}) => {
+const Article = ({profilePicture, name, likes, date, attachment, content}) => {
 
     return (
        

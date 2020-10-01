@@ -11,10 +11,12 @@ class oneArticle extends Component {
     state = {
         post: {},
         isLoaded: false,
-        error : null
+        error : null,
+        canUpdate: false
     }
 
     componentDidMount(){
+
         const queryString =  window.location.href;
         let id = queryString.split('/post/')[1]
         
@@ -27,6 +29,18 @@ class oneArticle extends Component {
             console.log(this.state.post)  
         })
         .catch(err => console.log(err))
+
+    }
+
+    userCanUpdate = async () => {
+
+        let postUserId = await this.state.post.UserId
+
+        if(parseInt(localStorage.getItem("userId")) === postUserId) {
+            this.setState({ canUpdate: true })
+        }
+
+        return this.state.canUpdate
     }
 
     render () {
@@ -46,6 +60,7 @@ class oneArticle extends Component {
         return (
             <Fragment> 
                 {article}
+                {this.userCanUpdate ? <a href={'/post/update/' + post.id}>Update</a> : null}
             </Fragment>
         )
     }
