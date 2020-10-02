@@ -2,11 +2,6 @@ import React, { Component, Fragment } from 'react'
 import {Redirect} from 'react-router-dom'
 import API from '../../Api/articlesAPI'
 import Article from '../Articles/Article/Article'
-import articlesAPI from '../../Api/articlesAPI'
-
-const headers = {
-    'Authorization': localStorage.getItem('token')
-};
 
 class oneArticle extends Component {
 
@@ -23,7 +18,7 @@ class oneArticle extends Component {
         const queryString =  window.location.href;
         let id = queryString.split('/post/')[1]
         
-        API.getOneArticle(id, headers)
+        API.getOneArticle(id)
         .then(article => {
             this.setState({
                 post: article.data,
@@ -47,7 +42,7 @@ class oneArticle extends Component {
     }
 
     handleDelete = () => {
-        articlesAPI.deleteArticle(this.state.post.id, headers)
+        API.deleteArticle(this.state.post.id)
         .then(() => console.log("It was deleted"))
         .catch(err => console.log(err))
 

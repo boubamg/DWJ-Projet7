@@ -3,10 +3,6 @@ import articlesAPI from '../../Api/articlesAPI'
 import { Redirect } from 'react-router-dom'
 import ArticleForm from '../Form/Article_form'
 
-const headers = {
-    'Authorization': localStorage.getItem('token'),
-};
-
 class createArticle extends Component {
 
     state = {
@@ -23,7 +19,7 @@ class createArticle extends Component {
         data.append("content", this.state.content);
         data.append("attachment", this.state.attachment);
 
-        articlesAPI.postArticles(data, headers)
+        articlesAPI.postArticles(data)
             .then(() => {
                 console.log("Article ajouté")
                this.setState({ redirect: true })
