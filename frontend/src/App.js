@@ -24,7 +24,7 @@ class App extends Component {
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
               <a className="navbar-brand" href="/post">Navbar</a>
 
-              {localStorage.getItem('token') ?
+              { localStorage.getItem('token') ?
                <ul className="navbar-nav">
                 <li><Link to={'/post'} className="nav-link">Accueil</Link></li>
                 <li><Link to={'/post/create'} className="nav-link">Poster</Link></li>
@@ -35,8 +35,7 @@ class App extends Component {
               <ul className="navbar-nav">
                 <li><Link to={'/'} className="nav-link"> Se connecter </Link></li>
                 <li><Link to={'/signup'} className="nav-link">S'inscrire</Link></li>
-              </ul> 
-              }    
+              </ul> }    
 
           </nav>
 

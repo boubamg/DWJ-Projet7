@@ -56,6 +56,10 @@ class oneArticle extends Component {
 
     render () {
 
+        if(!localStorage.getItem('token')){
+            return <Redirect to='/' />
+        }
+
         const {post, redirect} = this.state
 
         if(redirect){

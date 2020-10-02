@@ -42,6 +42,10 @@ class createArticle extends Component {
 
     render () {
 
+        if(!localStorage.getItem('token')){
+            return <Redirect to='/' />
+        }
+
         if(this.state.redirect){
             return  <Redirect to='/post'/>
         }
