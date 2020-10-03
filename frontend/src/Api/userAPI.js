@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const headers = {
-    'Authorization': localStorage.getItem('token'),
+    'Authorization': 'Bearer ' + localStorage.getItem('token'),
     "Content-Type": "application/json",
     'Accept': 'application/json',
 };
@@ -22,8 +22,8 @@ export default {
     return axios.get(baseUrl + "/me", {headers});
     },  
 
-    changeProfile : (biography, profilePicture) => {
-    return axios.put(baseUrl + "/me", {biography, profilePicture}, {headers});
+    putProfile : (data) => {
+    return axios.put(baseUrl + "/me", data, {headers});
     }, 
 
     deleteAccount : () => {

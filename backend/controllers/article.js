@@ -150,8 +150,8 @@ exports.updateArticle = (req,res) => {
                     }
 
                     // get form input
-                    let content = req.body.content
-                    let attachment = req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : null;
+                    let content = req.body.content ? req.body.content : article.content;
+                    let attachment = req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : article.attachment;
 
                     // verify if user is article creator
                     if(article.UserId !== user.id) {
@@ -163,7 +163,7 @@ exports.updateArticle = (req,res) => {
                         content : content,
                         attachment : attachment
                     })
-                    .then(() => res.status(201).json({ message: "Article was updated" }))
+                    .then(() => res.status(200).json({ message: "Article was updated" }))
                     .catch(error => res.status(500).json({ error: `${error}` }))
                 })
                 .catch(error => res.status(500).json({ error: `${error}` }));

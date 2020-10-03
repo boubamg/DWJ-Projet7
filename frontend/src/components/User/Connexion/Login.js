@@ -43,7 +43,7 @@ class loginForm extends Component {
 
         userAPI.login(email, password)
             .then(response => { 
-                localStorage.setItem('token', 'Bearer '  + response.data.token)
+                localStorage.setItem('token', response.data.token)
                 localStorage.setItem('userId', response.data.userId)
                 // redirect
                 this.setState({redirection: true})

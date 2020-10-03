@@ -151,7 +151,7 @@ exports.updateProfile = (req,res) => {
                 biography: biography,
                 profilePicture: profilePicture
             })
-            .then(() => { res.status(201).json({ message: 'Profile updated'}) })
+            .then(() => { res.status(200).json({ message: 'Profile updated'}) })
             .catch(error => res.status(500).json({ error : `${error}` }));
         })
         .catch(error => res.status(500).json({ error : `${error}` }));

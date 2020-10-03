@@ -21,4 +21,4 @@ const storage = multer.diskStorage({
     }
 })
 
-module.exports = multer({storage : storage}).single('attachment');
+module.exports = multer({storage : storage});

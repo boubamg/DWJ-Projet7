@@ -9,9 +9,10 @@ import Articles from './components/Articles/Articles';
 import Article from './components/Articles/Article'; 
 import createArticle from './components/Articles/createArticle';
 import updateArticle from './components/Articles/updateArticle'; 
-
+import updateProfile from './components/User/updateProfile';
 
 import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom'
+
 
 class App extends Component {
   
@@ -46,6 +47,7 @@ class App extends Component {
             <Route exact path='/' component={Login} />
             <Route exact path='/signup' component={Signup} />
             <Route exact path='/me' component={Profile} />
+            <Route exact path='/me/update' component={updateProfile} />
 
             <Route exact path='/post' component={Articles} />
             <Route exact path='/post/create' component={createArticle} />
