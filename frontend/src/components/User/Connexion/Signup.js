@@ -70,6 +70,11 @@ class Signup extends Component {
     render () {
 
         const {redirection} = this.state;
+
+        if(localStorage.getItem('token')){
+            return <Redirect to='/post' />
+        }
+        
         if(redirection){
             return <Redirect to='/'/>;
         }

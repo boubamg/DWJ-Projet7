@@ -100,7 +100,7 @@ exports.login = (req,res) => {
                     token: jwt.sign(
                         {userId : user.id},
                         tokenKey,
-                        { expiresIn: '24h'})
+                        { expiresIn: '12h'})
                 })
             })
             .catch(err => res.status(500).json({ error : `${err}` }))

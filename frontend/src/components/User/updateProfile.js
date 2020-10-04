@@ -3,11 +3,16 @@ import { Redirect } from 'react-router-dom'
 import { Form, FormGroup, Label, Button, Input, Container } from 'reactstrap'
 import API from '../../Api/userAPI'
 
+const headers = {
+    'Authorization': `Bearer ${localStorage.getItem('token')}`
+};
+
 class updateProfile extends Component {
 
     state = {
         biography: "",
-        profilePicture: null
+        profilePicture: null,
+        redirect: false
     }
 
     handleChange = (e) => {
@@ -22,9 +27,9 @@ class updateProfile extends Component {
         data.append("biography", this.state.biography)
         data.append("profilePicture", this.state.profilePicture)
 
-        API.putProfile(data)
+        API.putProfile(data, headers)
         .then(() => {
-            console.log("ok")
+            this.setState({redirect: true})
         })
         .catch(err => {
             console.log(err)
@@ -37,10 +42,14 @@ class updateProfile extends Component {
 
     render () {
 
-        let { biography } = this.state
+        let { biography, redirect } = this.state
 
         if(!localStorage.getItem('token')){
             return <Redirect to='/' />
+        }
+
+        if(redirect){
+            return <Redirect to='/me' />
         }
 
         return (

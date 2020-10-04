@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Components
+import Navbar from './components/navbar'
 import Signup from './components/User/Connexion/Signup';
 import Login from './components/User/Connexion/Login';
 import Profile from './components/User/Profile'
@@ -22,32 +23,15 @@ class App extends Component {
 
       <Fragment>
         <Router>
-
-          <nav className="navbar navbar-expand-lg navbar-light bg-light">
-              <a className="navbar-brand" href="/post">Navbar</a>
-
-              { localStorage.getItem('token') ?
-               <ul className="navbar-nav">
-                <li><Link to={'/post'} className="nav-link">Accueil</Link></li>
-                <li><Link to={'/post/create'} className="nav-link">Poster</Link></li>
-                <li><Link to={'/me'} className="nav-link">Profil</Link></li>
-                <li><Link onClick={() => {localStorage.clear()}} to={'/'} className="nav-link">Déconnexion</Link></li>
-                {/* dropdown for profile createArticle logout */}
-              </ul>
-             :
-              <ul className="navbar-nav">
-                <li><Link to={'/'} className="nav-link"> Se connecter </Link></li>
-                <li><Link to={'/signup'} className="nav-link">S'inscrire</Link></li>
-              </ul> }    
-
-          </nav>
+          
+          <Navbar />
 
           <Switch>
             
             <Route exact path='/' component={Login} />
             <Route exact path='/signup' component={Signup} />
-            <Route exact path='/me' component={Profile} />
-            <Route exact path='/me/update' component={updateProfile} />
+            <Route exact path='/profile' component={Profile} />
+            <Route exact path='/profile/update' component={updateProfile} />
 
             <Route exact path='/post' component={Articles} />
             <Route exact path='/post/create' component={createArticle} />

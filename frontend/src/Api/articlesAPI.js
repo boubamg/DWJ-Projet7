@@ -1,32 +1,27 @@
 import axios from 'axios'
 
-const headers = {
-    'Authorization': 'Bearer ' + localStorage.getItem('token')
-};
-
-
 const baseUrl = "http://localhost:4000/api/article";
 
 export default {
 
-    getArticles : () => {
+    getArticles : (headers) => {
     return axios.get(baseUrl + "/", {headers})
     },
 
-    postArticles : (data) => {
-        return axios.post(baseUrl + "/", data , {headers} )
+    postArticles : (data, headers) => {
+        return axios.post(baseUrl + "/", data , {headers})
     },
 
-    getOneArticle : (id) => {
-        return axios.get(baseUrl + "/" + id, {headers} )
+    getOneArticle : (id, headers) => {
+        return axios.get(baseUrl + "/" + id, {headers})
     },
 
-    putArticle : (id, data) => {
-        return axios.put(baseUrl + "/" + id, data , {headers} )
+    putArticle : (id, data, headers) => {
+        return axios.put(baseUrl + "/" + id, data , {headers})
     },
 
-    deleteArticle : (id) => {
-        return axios.delete(baseUrl + "/" + id, {headers} )
+    deleteArticle : (id, headers) => {
+        return axios.delete(baseUrl + "/" + id, {headers})
     }
 
 }

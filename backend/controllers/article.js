@@ -39,7 +39,7 @@ exports.createArticle = (req,res) => {
 exports.getAllArticles = (req,res) => {
 
     // get token and decode it
-    let token = req.headers.authorization.split(" ")[1];
+    let token = req.headers.authorization.split(' ')[1];
     let decodedToken = jwt.verify(token, tokenKey);
 
     // find article where id is decodedToken.userId

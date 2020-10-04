@@ -52,6 +52,10 @@ class loginForm extends Component {
     }
 
     render () {
+
+        if(localStorage.getItem('token')){
+            return <Redirect to='/post' />
+        }
         
         if(this.state.redirection){
             return <Redirect to='/post'/>;

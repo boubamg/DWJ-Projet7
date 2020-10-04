@@ -2,6 +2,10 @@ import React, { Component, Fragment } from 'react'
 import API from '../../Api/articlesAPI'
 import Article from './Article/Article';
 
+const headers = {
+    'Authorization': `Bearer ${localStorage.getItem('token')}`
+};
+
 
 class allArticles extends Component {
 
@@ -12,12 +16,11 @@ class allArticles extends Component {
     }
 
     componentDidMount(){
-        API.getArticles()
+        API.getArticles(headers)
         .then(articles => {
             this.setState({
                 posts: articles.data,
-                isLoaded: true
-            })              
+                isLoaded: true})              
         })
         .catch(err => console.log(err))
     }
