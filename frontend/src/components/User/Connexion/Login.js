@@ -1,5 +1,6 @@
-import React, { Component, Fragment } from 'react'
-import { Form, FormGroup, Label, Button, Input, Container } from 'reactstrap'
+import React, { Component } from 'react'
+
+import SignIn from '../../Form/Login_form'
 import userAPI from '../../../Api/userAPI'
 import {Redirect} from 'react-router-dom'
 import './Connexion.css'
@@ -61,28 +62,16 @@ class loginForm extends Component {
             return <Redirect to='/post'/>;
         }
 
+        let {email, password} = this.state
+
         return (
-            <Fragment>
-                <Container className="container">
-                    <Form onSubmit={this.handleSubmit}>
-                        <FormGroup>
-                            <Label for="email">Email</Label>
-                            <Input type="email" name="email" id="email" placeholder="exemple@exemple.com" required
-                            value={this.state.email} onChange={this.handleChange}/>
-                            <span style={{color: "red"}}>{this.state.errors["email"]}</span>
-                        </FormGroup>
-                        <FormGroup>
-                            <Label for="password">Mot de passe</Label>
-                            <Input type="password" name="password" id="password" placeholder="Mot de passe" required
-                            value={this.state.password} onChange={this.handleChange}/>
-                            <span style={{color: "red"}}>{this.state.errors["password"]}</span>
-                        </FormGroup>
-                        <Button type="submit" color="secondary" size="lg" block>Se connecter</Button>
-                    </Form>
-                        <span className="line"></span>
-                        <Button onClick={() => window.location.href='/signup'} >Créer un compte</Button>
-                </Container>
-            </Fragment>
+
+            <SignIn
+            emailValue={email}
+            passwordValue={password}
+            Change={this.handleChange} 
+            Submit={this.handleSubmit}
+            />
         )
     }
 }

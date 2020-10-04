@@ -52,10 +52,10 @@ class createArticle extends Component {
 
         return (
            <ArticleForm 
-           submit={this.handleSubmit}
            contentValue={this.state.content}
            contentChange={this.handleChange}
            attachmentChange={this.handleFileChange}
+           Submit={this.handleSubmit}
            /> 
         )
     }

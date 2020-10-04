@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import API from '../../Api/articlesAPI'
 import Article from './Article/Article';
+import CreateArticleFrom from './createArticle'
 
 const headers = {
     'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -45,6 +46,7 @@ class allArticles extends Component {
 
         return (
             <Fragment>
+                <CreateArticleFrom />
                 {liste.reverse()}
             </Fragment>
         )

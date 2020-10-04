@@ -50,12 +50,6 @@ export default function MenuAppBar() {
       <AppBar position="static">
         <Toolbar className="toolbar">
         <Link to={'/post'}><img src={logo} alt='Groupomania Logo' /></Link>
-
-            {localStorage.getItem("token") ? 
-            <Fab color="primary" aria-label="add" className={classes.fabButton}>
-                <Link to={'/post/create'}><AddIcon /></Link>
-            </Fab>
-            : null }
             
             <div>
               <IconButton

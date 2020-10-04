@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react'
-import { Form, FormGroup, Label, Button, Input, Row, Container, Col } from 'reactstrap';
+//import { Form, FormGroup, Label, Button, Input, Row, Container, Col } from 'reactstrap';
 import userAPI from '../../../Api/userAPI'
 import {Redirect} from 'react-router-dom'
+import SignUp from '../../Form/Signup_form'
 //import './Connexion.css'
 
 
@@ -69,7 +70,7 @@ class Signup extends Component {
 
     render () {
 
-        const {redirection} = this.state;
+        const {firstname, lastname, email, password, confirmPassword,redirection} = this.state;
 
         if(localStorage.getItem('token')){
             return <Redirect to='/post' />
@@ -80,49 +81,17 @@ class Signup extends Component {
         }
 
         return (
-            <Fragment>
-                <Container>
-                <Form onSubmit={this.handleSubmit}>
-                        <Row>
-                            <Col xs="6">
-                                <FormGroup>
-                                    <Label for="firstname">Prénom</Label>
-                                    <Input type="text" name="firstname"  placeholder="Prénom" required 
-                                    value={this.state.firstname} onChange={this.handleChange}/>
-                                    <span style={{color: "red"}}>{this.state.errors["firstname"]}</span>
-                                </FormGroup>
-                            </Col>
-                            <Col xs="6">
-                                <FormGroup>
-                                    <Label for="lastname">Nom</Label>
-                                    <Input type="text" name="lastname" placeholder="Nom" required 
-                                    value={this.state.lastname} onChange={this.handleChange}/>
-                                    <span style={{color: "red"}}>{this.state.errors["lastname"]}</span>
-                                </FormGroup>
-                            </Col>
-                        </Row>
-                        <FormGroup>
-                            <Label for="email">Email</Label>
-                            <Input type="email" name="email" placeholder="exemple@exemple.com" required 
-                            value={this.state.email} onChange={this.handleChange}/>
-                            <span style={{color: "red"}}>{this.state.errors["email"]}</span>
-                        </FormGroup>
-                        <FormGroup>
-                            <Label for="password">Mot de passe</Label>
-                            <Input type="password" name="password" placeholder="Mot de passe" required
-                            value={this.state.password} onChange={this.handleChange}/>
-                            <span style={{color: "red"}}>{this.state.errors["password"]}</span>
-                        </FormGroup>
-                        <FormGroup>
-                            <Label for="corfirmPassword">Mot de passe</Label>
-                            <Input type="password" name="confirmPassword" placeholder="Confirmation du mot de passe" required
-                            value={this.state.confirmPassword} onChange={this.handleChange}/>
-                            <span style={{color: "red"}}>{this.state.errors["confirmPassword"]}</span>
-                        </FormGroup>
-                        <Button block type="submit">S'inscrire</Button>
-                    </Form>
-                </Container>
-            </Fragment>
+
+            <SignUp
+            firstnameValue={firstname}
+            lastnameValue={lastname}
+            email={email}
+            passwordValue={password}
+            cpasswordValue={confirmPassword}
+            Change={this.handleChange}
+            Submit={this.handleSubmit} 
+            />
+
         )
     }
 }

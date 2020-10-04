@@ -8,7 +8,6 @@ import Login from './components/User/Connexion/Login';
 import Profile from './components/User/Profile'
 import Articles from './components/Articles/Articles';
 import Article from './components/Articles/Article'; 
-import createArticle from './components/Articles/createArticle';
 import updateArticle from './components/Articles/updateArticle'; 
 import updateProfile from './components/User/updateProfile';
 
@@ -24,7 +23,8 @@ class App extends Component {
       <Fragment>
         <Router>
           
-          <Navbar />
+          {localStorage.getItem("token") ? <Navbar /> : null}
+          
 
           <Switch>
             
@@ -34,7 +34,6 @@ class App extends Component {
             <Route exact path='/profile/update' component={updateProfile} />
 
             <Route exact path='/post' component={Articles} />
-            <Route exact path='/post/create' component={createArticle} />
             <Route exact path='/post/:id' component={Article} />
             <Route exact path='/post/update/:id' component={updateArticle} />
             
