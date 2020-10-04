@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { Redirect } from 'react-router-dom'
 import { Form, FormGroup, Label, Button, Input, Container } from 'reactstrap'
 import API from '../../Api/userAPI'
+import UpdateProfileForm from '../Form/updateProfile_form'
 
 const headers = {
     'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -49,29 +50,16 @@ class updateProfile extends Component {
         }
 
         if(redirect){
-            return <Redirect to='/me' />
+            return <Redirect to='/profile' />
         }
 
         return (
-            <Fragment>
-                <Container className="container">
-                    <Form onSubmit={this.handleSubmit} id='form' >
-                        <FormGroup>
-                            <Label for="biography">Biographie</Label>
-                            <Input type="textarea" name="biography" placeholder="Biography"
-                            value={biography} onChange={this.handleChange} />
-                            {/* <span style={{color: "red"}}>{contentError}</span> */}
-                        </FormGroup>
-                        <FormGroup>
-                            <Label for="profilePicture">Photo de profil</Label>
-                            <Input type="file" name="profilePicture" id="profilePicture"
-                            onChange={this.profilePictureChange} />
-                            {/* <span style={{color: "red"}}>{{attachmentError}}</span> */}
-                        </FormGroup>
-                        <Button type="submit" color="secondary" size="lg" block>Mettre à jour</Button>
-                    </Form>
-                </Container>
-            </Fragment>
+            <UpdateProfileForm
+            biographyValue={biography}
+            biographyChange={this.handleChange}
+            profilePictureChange={this.profilePictureChange} 
+            Submit={this.handleSubmit}
+            />
         )
     }
 }

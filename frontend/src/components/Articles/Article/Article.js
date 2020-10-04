@@ -25,9 +25,15 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto"
   },
   media: {
-    maxWidth: '100%',
-    height: 0,
-    paddingTop: '70%',
+    // maxWidth: '100%',
+    // height: 0,
+    // paddingTop: '70%',
+    height: "40px",
+    marginLeft: "113px",
+    paddingLeft: "56.25%",
+    paddingTop: "56.25%", // 16:9,
+    marginTop: "20px",
+    width: "30px"
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -44,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function RecipeReviewCard({profilePicture, name, likes, attachment, content, handleLikeClick}) {
+export default function RecipeReviewCard({profilePicture, name, likes, attachment, content, handleLikeClick, moreInfoClick}) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -60,11 +66,9 @@ export default function RecipeReviewCard({profilePicture, name, likes, attachmen
 
       <CardHeader
         avatar={
-        <Avatar aria-label="recipe" className={classes.avatar}>
-          <img src={profilePicture}/>
-          </Avatar> }
+        <Avatar aria-label="recipe" src={profilePicture} className={classes.avatar}></Avatar> }
         action={
-          <IconButton aria-label="settings">
+          <IconButton aria-label="settings" onClick={moreInfoClick}>
             <MoreVertIcon />
           </IconButton>
         }
