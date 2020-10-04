@@ -22,6 +22,10 @@ export default {
 
     deleteArticle : (id, headers) => {
         return axios.delete(baseUrl + "/" + id, {headers})
+    },
+
+    likeArticle : (id, headers) => {
+        return axios.post("http://localhost:4000/api/like/article/" + id, {} , {headers})
     }
 
 }

@@ -1,31 +1,132 @@
-import React from 'react'
+import React from 'react';
 import './Article.css'
+import { makeStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
+import Collapse from '@material-ui/core/Collapse';
+import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import { red } from '@material-ui/core/colors';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    maxWidth: 500,
+    boxShadow: " -7px 11px 34px 15px rgba(0,0,0,0.24);",
+    marginTop: theme.spacing(8),
+    marginBottom: theme.spacing(8),
+    margin: "auto"
+  },
+  media: {
+    maxWidth: '100%',
+    height: 0,
+    paddingTop: '70%',
+  },
+  expand: {
+    transform: 'rotate(0deg)',
+    marginLeft: 'auto',
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shortest,
+    }),
+  },
+  expandOpen: {
+    transform: 'rotate(180deg)',
+  },
+  avatar: {
+    backgroundColor: red[500],
+  },
+}));
+
+export default function RecipeReviewCard({profilePicture, name, likes, attachment, content, handleLikeClick}) {
+  const classes = useStyles();
+  const [expanded, setExpanded] = React.useState(false);
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
 
 
-const Article = ({profilePicture, name, likes, date, attachment, content}) => {
+  return (
+    <Card className={classes.root}>
 
-    return (
-       
-        <div className="card">
-            <div className="side">
-                <div className="creator">
-                    <img src={profilePicture} alt="profile image"/>
-                    <span className="name">{name}</span>
-                </div>
-                <div className="likes">
-                {likes}
-                </div>
-                <span className="italic">{date}</span>
-            </div>
-            
-            <div className="content">
-                <div className="attachment">
-                <img src={attachment} alt="image" />
-                </div>
-                <div className="text">{content}</div>
-            </div>
-        </div>
-    )
+      {/* Name / ProfilPicture */}
+
+      <CardHeader
+        avatar={
+        <Avatar aria-label="recipe" className={classes.avatar}>
+          <img src={profilePicture}/>
+          </Avatar> }
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
+        title={name} />
+
+      {/* END Name / ProfilPicture */} 
+
+      {/* Content */}
+
+        {attachment ? 
+        <CardMedia
+        className={classes.media}
+        image={attachment}
+        /> :
+        null}
+      
+      <CardContent>
+        <Typography variant="body2" color="textSecondary" component="p">
+            {content}
+        </Typography>
+      </CardContent>
+
+      {/* END Content */}
+
+      <CardActions disableSpacing>
+        <IconButton aria-label="likes" onClick={handleLikeClick}>
+          <FavoriteIcon /> {likes}
+        </IconButton>
+
+        <IconButton
+          className={clsx(classes.expand, {
+            [classes.expandOpen]: expanded,
+          })}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more" >
+          <ExpandMoreIcon />
+        </IconButton>
+      </CardActions>
+
+        
+      {/* Comments */}
+
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <CardContent>
+          <Typography paragraph>
+          Comment
+          </Typography>
+          <Typography paragraph>
+            Comment
+          </Typography>
+          <Typography paragraph>
+          Comment
+          </Typography>
+          <Typography>
+          Comment
+          </Typography>
+        </CardContent>
+      </Collapse>
+
+      {/* END Comments */}
+
+    </Card>
+  );
 }
-
-export default Article

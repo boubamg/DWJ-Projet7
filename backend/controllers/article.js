@@ -55,7 +55,7 @@ exports.getAllArticles = (req,res) => {
                 // include user who created article
                 include : [{
                     model: models.User,
-                    attributes: ['firstname','profilePicture'],
+                    attributes: ['firstname','lastname','profilePicture'],
                     where: {
                         id: {[Op.col] : 'Article.UserId'}
                     }

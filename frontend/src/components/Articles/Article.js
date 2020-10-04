@@ -53,6 +53,12 @@ class oneArticle extends Component {
         this.setState({redirect: true})
     }
 
+    handleLikeClick = (id) => {
+        API.likeArticle(id, headers)
+        .then(() => console.log("Article aimé"))
+        .catch((err) => console.log(err))
+    }
+
     render () {
 
         if(!localStorage.getItem('token')){
@@ -72,7 +78,8 @@ class oneArticle extends Component {
             //name={post.User}
             likes={post.likes}
             content={post.content} 
-            attachment={post.attachment} 
+            attachment={post.attachment}
+            handleLikeClick={() => this.handleLikeClick(post.id)} 
             />
 
         return (

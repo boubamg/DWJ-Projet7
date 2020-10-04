@@ -21,9 +21,16 @@ class allArticles extends Component {
         .then(articles => {
             this.setState({
                 posts: articles.data,
-                isLoaded: true})              
+                isLoaded: true})
+            console.log(this.state.posts[0])
         })
         .catch(err => console.log(err))
+    }
+
+    handleLikeClick = (id) => {
+        API.likeArticle(id, headers)
+        .then(() => console.log("Article aimé"))
+        .catch((err) => console.log(err))
     }
 
     render () {
@@ -32,16 +39,17 @@ class allArticles extends Component {
 
         const liste = Object.keys(posts)
         .map(id => (
-            <a href={'/post/' + posts[id].id}>
+            // <a href={'/post/' + posts[id].id}>
             <Article 
             key={posts[id].id}
             profilePicture={posts[id].User.profilePicture}
-            name={posts[id].User.name}
+            name={posts[id].User.firstname + ' ' + posts[id].User.lastname}
             likes={posts[id].likes}
             content={posts[id].content} 
             attachment={posts[id].attachment}
+            handleLikeClick={() => this.handleLikeClick(posts[id].id)}
             />
-            </a>
+            // </a>
         ))
 
         return (
