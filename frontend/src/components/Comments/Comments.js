@@ -17,10 +17,8 @@ class Comments extends Component {
         commentAPI.getComments(id, headers)
         .then(comments => {
             this.setState({allComment: comments.data})
-            console.log(this.state.allComment)
         })
         .catch(err => console.log(err))
-       
     }
 
     handleDeleteComment = (articleId, commentId) => {

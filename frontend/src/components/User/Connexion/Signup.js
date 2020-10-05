@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 //import { Form, FormGroup, Label, Button, Input, Row, Container, Col } from 'reactstrap';
 import userAPI from '../../../Api/userAPI'
 import {Redirect} from 'react-router-dom'

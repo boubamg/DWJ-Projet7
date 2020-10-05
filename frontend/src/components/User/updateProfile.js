@@ -1,6 +1,5 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import { Form, FormGroup, Label, Button, Input, Container } from 'reactstrap'
 import API from '../../Api/userAPI'
 import UpdateProfileForm from '../Form/updateProfile_form'
 

@@ -6,11 +6,12 @@
     border: none; }
   
 .profile-page .card-profile {
-    margin-top: 50px; }
+    margin-top: 150px; }
 .profile-page .card-profile .card-profile-image {
     position: relative; }
 .profile-page .card-profile .card-profile-image img {
     max-width: 180px;
+    height: 180px;
     border-radius: 0.25rem;
     transform: translate(-50%, -30%);
     position: absolute;
@@ -18,3 +19,10 @@
     transition: all 0.15s ease; }
 .profile-page .card-profile .card-profile-image img:hover {
     transform: translate(-50%, -33%); }
+
+.profile-page .card-profile h3 {
+    margin-top: 150px;
+}
+
+.rounded-circle {
+     border-radius: 50% !important; }

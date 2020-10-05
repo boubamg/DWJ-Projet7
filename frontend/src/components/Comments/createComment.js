@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Comment_Form from '../Form/Comment_form'
+import CommentForm from '../Form/Comment_form'
 import commentAPI from '../../Api/commentAPI'
 
 const headers = {
@@ -27,7 +27,7 @@ class createComment extends Component {
 
     render () {
         return (
-           <Comment_Form 
+           <CommentForm 
             commentValue={this.state.comment}
             commentChange={this.handleChange}
             commentSubmit={this.handleSubmit}
