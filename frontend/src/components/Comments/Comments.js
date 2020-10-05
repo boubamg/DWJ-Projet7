@@ -21,6 +21,12 @@ class Comments extends Component {
         .catch(err => console.log(err))
     }
 
+    handleDeleteComment = (articleId, commentId) => {
+        commentAPI.deleteComments(articleId, commentId, headers)
+        .then(() => console.log("Comment was deleted"))
+        .catch(err => console.log(err))
+    }
+
     render () {
 
         let {allComment} = this.state
@@ -32,6 +38,7 @@ class Comments extends Component {
                 profilePicture={allComment[id].User.profilePicture}
                 name={allComment[id].User.firstname + ' ' + allComment[id].User.lastname}
                 comment={allComment[id].commentText}
+                handleDeleteComment={() => {this.handleDeleteComment(allComment[id].ArticleId,allComment[id].id)}}
             />
         ))
 

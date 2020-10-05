@@ -153,7 +153,7 @@ exports.deleteComment = (req,res) => {
                                 return res.status(404).json({ error: "Comment not found" })
                             }
                             // verify if user is the creator of comment or administrator
-                            if(comment.UserId !== user.id || !user.isAdmin){
+                            if(comment.UserId !== user.id && !user.isAdmin){
                                 return res.status(401).json({ error: "You cannot do this" })
                             }
                             // delete comment

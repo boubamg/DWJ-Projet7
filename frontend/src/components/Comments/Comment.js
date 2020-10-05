@@ -6,6 +6,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import { yellow } from '@material-ui/core/colors';
+import Button from '@material-ui/core/Button';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -14,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Comment({profilePicture, name, comment}) {
+export default function Comment({profilePicture, name, comment, handleDeleteComment, handleUpdateComment}) {
   const classes = useStyles();
 
   return (
@@ -30,7 +31,12 @@ export default function Comment({profilePicture, name, comment}) {
         <Typography variant="body2" color="textSecondary" component="p">
           {comment}
         </Typography>
+        
       </CardContent>
+      
+      <Button color="secondary" onClick={handleDeleteComment} >supprimer</Button>
+      <Button color="primary" onClick={handleUpdateComment}>Update</Button>
+
     </Card>
   );
 }
