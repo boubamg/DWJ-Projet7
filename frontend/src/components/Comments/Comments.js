@@ -17,8 +17,10 @@ class Comments extends Component {
         commentAPI.getComments(id, headers)
         .then(comments => {
             this.setState({allComment: comments.data})
+            console.log(this.state.allComment)
         })
         .catch(err => console.log(err))
+       
     }
 
     handleDeleteComment = (articleId, commentId) => {
@@ -39,6 +41,7 @@ class Comments extends Component {
                 name={allComment[id].User.firstname + ' ' + allComment[id].User.lastname}
                 comment={allComment[id].commentText}
                 handleDeleteComment={() => {this.handleDeleteComment(allComment[id].ArticleId,allComment[id].id)}}
+                creator={allComment[id].UserId}
             />
         ))
 

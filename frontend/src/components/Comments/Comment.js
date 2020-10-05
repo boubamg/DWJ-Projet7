@@ -15,8 +15,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Comment({profilePicture, name, comment, handleDeleteComment, handleUpdateComment}) {
+export default function Comment({creator, profilePicture, name, comment, handleDeleteComment, handleUpdateComment}) {
   const classes = useStyles();
+
+  const canUpdate = () => {
+    if(parseInt(localStorage.getItem("userId")) === creator){
+      return true
+    }
+    return false
+  }
 
   return (
     <Card variant="outlined">
@@ -33,9 +40,18 @@ export default function Comment({profilePicture, name, comment, handleDeleteComm
         </Typography>
         
       </CardContent>
+
+      {canUpdate() ? 
+      <Button color="secondary" onClick={handleDeleteComment}>
+        supprimer
+      </Button> : null}
       
-      <Button color="secondary" onClick={handleDeleteComment} >supprimer</Button>
-      <Button color="primary" onClick={handleUpdateComment}>Update</Button>
+      {localStorage.getItem("isAdmin") ? 
+      <Button color="secondary" onClick={handleDeleteComment}>
+        supprimer
+      </Button> : null}
+      
+      {/* <Button color="primary" onClick={handleUpdateComment}>Update</Button> */}
 
     </Card>
   );
