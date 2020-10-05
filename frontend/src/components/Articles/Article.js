@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import {Redirect} from 'react-router-dom'
 import API from '../../Api/articlesAPI'
 import Article from '../Articles/Article/Article'
+import CreateComment from '../Comments/createComment'
 
 const headers = {
     'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -80,6 +81,7 @@ class oneArticle extends Component {
             content={post.content} 
             attachment={post.attachment}
             handleLikeClick={() => this.handleLikeClick(post.id)} 
+            component={<CreateComment />}
             />
 
         return (

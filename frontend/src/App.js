@@ -12,6 +12,7 @@ import updateArticle from './components/Articles/updateArticle';
 import updateProfile from './components/User/updateProfile';
 
 import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom'
+import createComment from './components/Comments/createComment';
 
 
 class App extends Component {
@@ -35,6 +36,8 @@ class App extends Component {
             <Route exact path='/post' component={Articles} />
             <Route exact path='/post/:id' component={Article} />
             <Route exact path='/post/update/:id' component={updateArticle} />
+
+            <Route exact path='/comment/post/:id' component={createComment} />
             
           </Switch>
         </Router>

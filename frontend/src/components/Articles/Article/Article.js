@@ -13,8 +13,10 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import AddCommentIcon from '@material-ui/icons/AddComment';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+
+import CreateComment from '../../Comments/createComment';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,7 +52,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function RecipeReviewCard({profilePicture, name, likes, attachment, content, handleLikeClick, moreInfoClick}) {
+export default function Article(
+  {profilePicture, name, likes, attachment, content, handleLikeClick, moreInfoClick, component}) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -64,14 +67,9 @@ export default function RecipeReviewCard({profilePicture, name, likes, attachmen
 
       {/* Name / ProfilPicture */}
 
-      <CardHeader
+      <CardHeader onClick={moreInfoClick} 
         avatar={
         <Avatar aria-label="recipe" src={profilePicture} className={classes.avatar}></Avatar> }
-        action={
-          <IconButton aria-label="settings" onClick={moreInfoClick}>
-            <MoreVertIcon />
-          </IconButton>
-        }
         title={name} />
 
       {/* END Name / ProfilPicture */} 
@@ -80,12 +78,14 @@ export default function RecipeReviewCard({profilePicture, name, likes, attachmen
 
         {attachment ? 
         <CardMedia
+        onClick={moreInfoClick}
         className={classes.media}
         image={attachment}
         /> :
         null}
       
-      <CardContent>
+      <CardContent
+      onClick={moreInfoClick}>
         <Typography variant="body2" color="textSecondary" component="p">
             {content}
         </Typography>
@@ -104,10 +104,11 @@ export default function RecipeReviewCard({profilePicture, name, likes, attachmen
           })}
           onClick={handleExpandClick}
           aria-expanded={expanded}
-          aria-label="show more" >
-          <ExpandMoreIcon />
+          aria-label="show comments" >
+          <AddCommentIcon />
         </IconButton>
       </CardActions>
+      
 
         
       {/* Comments */}
@@ -130,6 +131,8 @@ export default function RecipeReviewCard({profilePicture, name, likes, attachmen
       </Collapse>
 
       {/* END Comments */}
+
+      {component}
 
     </Card>
   );

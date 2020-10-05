@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
-import API from '../../Api/articlesAPI'
+import articleAPI from '../../Api/articlesAPI'
 import Article from './Article/Article';
-import CreateArticleFrom from './createArticle'
+import CreateArticleForm from './createArticle'
 import { Redirect } from 'react-router-dom';
 
 const headers = {
@@ -20,7 +20,7 @@ class allArticles extends Component {
     }
 
     componentDidMount(){
-        API.getArticles(headers)
+        articleAPI.getArticles(headers)
         .then(articles => {
             this.setState({
                 posts: articles.data,
@@ -30,7 +30,7 @@ class allArticles extends Component {
     }
 
     handleLikeClick = (id) => {
-        API.likeArticle(id, headers)
+        articleAPI.likeArticle(id, headers)
         .then(() => console.log("Article aimé"))
         .catch((err) => console.log(err))
     }
@@ -65,7 +65,7 @@ class allArticles extends Component {
 
         return (
             <Fragment>
-                <CreateArticleFrom />
+                <CreateArticleForm />
                 {liste.reverse()}
             </Fragment>
         )

@@ -60,6 +60,7 @@ export default function Signup({contentValue, contentChange, attachmentChange, S
                 placeholder="Que voulez vous dire ?"
                 value={contentValue}
                 onChange={contentChange}
+                required
                 />
             </Grid>
             <input
