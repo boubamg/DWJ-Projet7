@@ -13,7 +13,7 @@ export default {
     updateComments : (id, commentid, comment, headers) => {
         return axios.put(baseUrl + id + '/' + commentid, {comment}, {headers})
     },
-    deleteComments : (id, commentid, comment, headers) => {
+    deleteComments : (id, commentid, headers) => {
         return axios.delete(baseUrl + id + '/' + commentid, {headers})
     },
 

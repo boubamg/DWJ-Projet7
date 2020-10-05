@@ -17,6 +17,8 @@ import AddCommentIcon from '@material-ui/icons/AddComment';
 import DeleteIcon from '@material-ui/icons/Delete';
 import UpdateIcon from '@material-ui/icons/Update';
 
+import Comments from '../../Comments/Comments'
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Article(
-  {creator, profilePicture, name, likes, attachment, content, handleLikeClick, commentFormComponent, handleDelete, handleUpdate}) {
+  {creator, profilePicture, name, likes, attachment, content, handleLikeClick, commentFormComponent, handleDelete, handleUpdate, articleId}) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -118,20 +120,8 @@ export default function Article(
       {/* Comments */}
 
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography paragraph>
-          Comment
-          </Typography>
-          <Typography paragraph>
-            Comment
-          </Typography>
-          <Typography paragraph>
-          Comment
-          </Typography>
-          <Typography>
-          Comment
-          </Typography>
-        </CardContent>
+        <Comments articleId={articleId}/>
+        
       </Collapse>
 
       {/* END Comments */}
@@ -149,9 +139,11 @@ export default function Article(
       </div> : null}
 
       {localStorage.getItem("isAdmin") ? 
+      <div className="Actions">
       <IconButton onClick={handleDelete}>
         <DeleteIcon color="secondary" style={{ fontSize: 40 }} />
-      </IconButton>: null}
+      </IconButton>
+      </div>: null}
 
     </Card>
   );

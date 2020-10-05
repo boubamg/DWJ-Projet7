@@ -8,6 +8,7 @@ import Login from './components/User/Connexion/Login';
 import Profile from './components/User/Profile'
 import Articles from './components/Articles/Articles';
 import updateArticle from './components/Articles/updateArticle';
+import Comment from './components/Comments/Comment'
 
 import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom'
 
@@ -32,6 +33,8 @@ class App extends Component {
 
             <Route exact path='/post' component={Articles} />
             <Route exact path='/post/update/:id' component={updateArticle} />
+
+            <Route exact path='/comment' component={Comment} />
 
           </Switch>
         </Router>

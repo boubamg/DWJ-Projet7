@@ -28,7 +28,6 @@ class allArticles extends Component {
             this.setState({
                 posts: articles.data,
                 isLoaded: true})
-            console.log(this.state.posts)
         })
         .catch(err => console.log(err))
     }
@@ -80,6 +79,7 @@ class allArticles extends Component {
             handleUpdate={() => this.handleUpdatePost(posts[id].id)}
             commentFormComponent={<CreateComment id={posts[id].id} />}
             creator={posts[id].UserId}
+            articleId={posts[id].id}
             />
             // </a>
         ))

@@ -64,7 +64,7 @@ exports.getComments = (req,res) => {
                         // include user who commented
                         include : {
                             model: models.User,
-                            attributes: ['firstname','profilePicture'],
+                            attributes: ['firstname', 'lastname', 'profilePicture'],
                             where: {
                                 id: {[Op.col] : 'Comment.UserId'}
                             }
