@@ -21,7 +21,7 @@ class createComment extends Component {
         event.preventDefault()
 
         commentAPI.postComments(this.props.id, this.state.comment, headers)
-        .then(() => console.log("Commentaire ajouté"))
+        .then(() => this.setState({comment: ""}))
         .catch(err => console.log(err))
     }
 

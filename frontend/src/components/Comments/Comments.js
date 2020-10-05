@@ -19,7 +19,6 @@ class Comments extends Component {
             this.setState({allComment: comments.data})
         })
         .catch(err => console.log(err))
-        console.log(this.state.allComment)
     }
 
     render () {
