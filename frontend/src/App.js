@@ -33,7 +33,6 @@ class App extends Component {
             <Route exact path='/post' component={Articles} />
             <Route exact path='/post/update/:id' component={updateArticle} />
 
-            
           </Switch>
         </Router>
       </Fragment>

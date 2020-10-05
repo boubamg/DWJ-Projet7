@@ -137,6 +137,7 @@ export default function Article(
       {/* END Comments */}
 
       {commentFormComponent}
+
       {canUpdate() ? <div className="Actions">
         <IconButton onClick={handleDelete}>
         <DeleteIcon color="secondary" style={{ fontSize: 40 }} />
@@ -146,6 +147,11 @@ export default function Article(
         <UpdateIcon style={{ color: 'green', fontSize: 40 }} />
         </IconButton>
       </div> : null}
+
+      {localStorage.getItem("isAdmin") ? 
+      <IconButton onClick={handleDelete}>
+        <DeleteIcon color="secondary" style={{ fontSize: 40 }} />
+      </IconButton>: null}
 
     </Card>
   );

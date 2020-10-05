@@ -44,8 +44,13 @@ class loginForm extends Component {
 
         userAPI.login(email, password)
             .then(response => { 
+                if(response.data.isAdmin){
+                    localStorage.setItem('isAdmin', response.data.isAdmin)
+                }
                 localStorage.setItem('token', response.data.token)
                 localStorage.setItem('userId', response.data.userId)
+                
+                console.log(response)
                 // redirect
                 this.setState({redirection: true})
             })

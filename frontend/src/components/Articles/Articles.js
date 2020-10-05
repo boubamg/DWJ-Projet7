@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import articleAPI from '../../Api/articlesAPI'
 import Article from './Article/Article';
 import CreateArticleForm from './createArticle'
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import CreateComment from '../Comments/createComment'
 
 const headers = {
