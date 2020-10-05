@@ -14,9 +14,9 @@ import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import AddCommentIcon from '@material-ui/icons/AddComment';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+import DeleteIcon from '@material-ui/icons/Delete';
+import UpdateIcon from '@material-ui/icons/Update';
 
-import CreateComment from '../../Comments/createComment';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Article(
-  {profilePicture, name, likes, attachment, content, handleLikeClick, moreInfoClick, component}) {
+  {creator, profilePicture, name, likes, attachment, content, handleLikeClick, commentFormComponent, handleDelete, handleUpdate}) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -61,13 +61,20 @@ export default function Article(
     setExpanded(!expanded);
   };
 
+  const canUpdate = () => {
+    if(parseInt(localStorage.getItem("userId")) === creator){
+      return true
+    }
+    return false
+  }
+
 
   return (
     <Card className={classes.root}>
 
       {/* Name / ProfilPicture */}
 
-      <CardHeader onClick={moreInfoClick} 
+      <CardHeader 
         avatar={
         <Avatar aria-label="recipe" src={profilePicture} className={classes.avatar}></Avatar> }
         title={name} />
@@ -78,14 +85,12 @@ export default function Article(
 
         {attachment ? 
         <CardMedia
-        onClick={moreInfoClick}
         className={classes.media}
         image={attachment}
         /> :
         null}
       
-      <CardContent
-      onClick={moreInfoClick}>
+      <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
             {content}
         </Typography>
@@ -108,7 +113,6 @@ export default function Article(
           <AddCommentIcon />
         </IconButton>
       </CardActions>
-      
 
         
       {/* Comments */}
@@ -132,7 +136,16 @@ export default function Article(
 
       {/* END Comments */}
 
-      {component}
+      {commentFormComponent}
+      {canUpdate() ? <div className="Actions">
+        <IconButton onClick={handleDelete}>
+        <DeleteIcon color="secondary" style={{ fontSize: 40 }} />
+        </IconButton>
+
+        <IconButton onClick={handleUpdate}>
+        <UpdateIcon style={{ color: 'green', fontSize: 40 }} />
+        </IconButton>
+      </div> : null}
 
     </Card>
   );

@@ -34,10 +34,9 @@ class App extends Component {
             <Route exact path='/profile' component={Profile} />
 
             <Route exact path='/post' component={Articles} />
-            <Route exact path='/post/:id' component={Article} />
+            {/* <Route exact path='/post/:id' component={Article} /> */}
             <Route exact path='/post/update/:id' component={updateArticle} />
 
-            <Route exact path='/comment/post/:id' component={createComment} />
             
           </Switch>
         </Router>

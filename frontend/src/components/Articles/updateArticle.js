@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import articlesAPI from '../../Api/articlesAPI'
 import { Redirect } from 'react-router-dom'
 import ArticleForm from '../Form/Article_form'
@@ -54,12 +54,15 @@ class updateArticle extends Component {
         }
 
         return (
-           <ArticleForm 
-           submit={this.handleSubmit}
-           contentValue={this.state.content}
-           contentChange={this.handleChange}
-           attachmentChange={this.handleFileChange}
-           /> 
+            <Fragment>
+                <ArticleForm 
+                submit={this.handleSubmit}
+                contentValue={this.state.content}
+                contentChange={this.handleChange}
+                attachmentChange={this.handleFileChange}
+                buttonContent="Mettre à jour"
+                /> 
+            </Fragment>
         )
     }
 }

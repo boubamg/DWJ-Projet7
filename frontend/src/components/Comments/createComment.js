@@ -19,12 +19,8 @@ class createComment extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        const queryString =  window.location.href;
-        let id = queryString.split('/post/')[1]
 
-        console.log(id)
-
-        commentAPI.postComments(id, this.state.comment, headers)
+        commentAPI.postComments(this.props.id, this.state.comment, headers)
         .then(() => console.log("Commentaire ajouté"))
         .catch(err => console.log(err))
     }

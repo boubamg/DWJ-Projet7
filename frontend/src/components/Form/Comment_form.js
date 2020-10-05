@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -46,6 +46,7 @@ export default function CommentForm({commentValue, commentChange, commentSubmit}
                 value={commentValue}
                 onChange={commentChange}
                 className={classes.comment}
+                required
                 />
             </Grid>
             <Grid item xs={4}>

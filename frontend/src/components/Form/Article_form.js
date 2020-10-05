@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function Signup({contentValue, contentChange, attachmentChange, Submit}) {
+export default function Signup({buttonContent, contentValue, contentChange, attachmentChange, Submit}) {
   const classes = useStyles();
   
   return (
@@ -83,7 +83,7 @@ export default function Signup({contentValue, contentChange, attachmentChange, S
                 variant="contained"
                 color="primary"
                 className={classes.submit}>
-            Publier
+            {buttonContent}
             </Button> 
 
         </Grid>

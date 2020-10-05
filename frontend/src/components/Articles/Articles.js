@@ -2,7 +2,8 @@ import React, { Component, Fragment } from 'react'
 import articleAPI from '../../Api/articlesAPI'
 import Article from './Article/Article';
 import CreateArticleForm from './createArticle'
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
+import CreateComment from '../Comments/createComment'
 
 const headers = {
     'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -15,6 +16,8 @@ class allArticles extends Component {
         posts: {},
         isLoaded: false,
         redirect: false,
+        update: false,
+        updateArticle: null,
         id: "",
         error : null
     }
@@ -25,6 +28,7 @@ class allArticles extends Component {
             this.setState({
                 posts: articles.data,
                 isLoaded: true})
+            console.log(this.state.posts)
         })
         .catch(err => console.log(err))
     }
@@ -39,12 +43,26 @@ class allArticles extends Component {
         this.setState({id, redirect: true})
     }
 
+    handleDeletePost = (id) => {
+        articleAPI.deleteArticle(id, headers)
+        .then(() => console.log("Article supprimé"))
+        .catch(err => console.log(err))
+    }
+
+    handleUpdatePost = (id) => {
+        this.setState({update: true, updateArticle: id})
+    }
+
     render () {
 
-        const {posts, redirect, id} = this.state
+        const {posts, redirect, update, updateArticle, id} = this.state
 
         if(redirect){
             return <Redirect to={"/post/" + id} />
+        }
+
+        if(update){
+            return <Redirect to={'/post/update/' + updateArticle } />
         }
 
         const liste = Object.keys(posts)
@@ -58,7 +76,10 @@ class allArticles extends Component {
             content={posts[id].content} 
             attachment={posts[id].attachment}
             handleLikeClick={() => this.handleLikeClick(posts[id].id)}
-            moreInfoClick={() => this.handleInfoClick(posts[id].id)}
+            handleDelete={() => this.handleDeletePost(posts[id].id)}
+            handleUpdate={() => this.handleUpdatePost(posts[id].id)}
+            commentFormComponent={<CreateComment id={posts[id].id} />}
+            creator={posts[id].UserId}
             />
             // </a>
         ))

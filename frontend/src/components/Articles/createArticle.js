@@ -56,6 +56,7 @@ class createArticle extends Component {
            contentChange={this.handleChange}
            attachmentChange={this.handleFileChange}
            Submit={this.handleSubmit}
+           buttonContent="Publier"
            /> 
         )
     }
