@@ -10,7 +10,7 @@ import Articles from './components/Articles/Articles';
 import updateArticle from './components/Articles/updateArticle';
 import Comment from './components/Comments/Comment'
 
-import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
 
 class App extends Component {

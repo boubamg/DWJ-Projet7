@@ -10,9 +10,6 @@
   "author": "Boubacar Maiga",
   "license": "ISC",
   "dependencies": {
-    "@admin-bro/express": "^3.0.0",
-    "@admin-bro/sequelize": "^1.1.0",
-    "admin-bro": "^3.2.5",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
@@ -24,6 +21,7 @@
     "mysql": "^2.18.1",
     "mysql2": "^2.1.0",
     "nodemon": "^2.0.4",
-    "sequelize": "^6.3.5"
+    "sequelize": "^6.3.5",
+    "sequelize-cli": "^6.2.0"
   }
 }
