@@ -42,7 +42,7 @@ export default function Comment({creator, profilePicture, name, comment, handleD
       </CardContent>
 
       {canUpdate() ? 
-      <Button color="secondary" onClick={handleDeleteComment}>
+      <Button style={{ display:"flex", marginLeft:"auto"}} color="secondary" onClick={handleDeleteComment}>
         supprimer
       </Button> : null}
 

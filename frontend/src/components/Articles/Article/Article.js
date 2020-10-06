@@ -102,7 +102,7 @@ export default function Article(
 
       <CardActions disableSpacing>
         <IconButton aria-label="likes" onClick={handleLikeClick}>
-          <FavoriteIcon /> {likes}
+          <FavoriteIcon color="secondary" /> {likes}
         </IconButton>
 
         <IconButton
