@@ -17,7 +17,7 @@ Créer sa base de donnée mysql
 
 Frontend:
 
-Démarrer `npm start` pour avoir accès au serveur de développement.
+> Démarrer `npm start` pour avoir accès au serveur de développement.
 Rendez-vous sur `http://localhost:3000/`.
 
 Backend:
