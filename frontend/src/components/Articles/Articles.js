@@ -5,10 +5,6 @@ import CreateArticleForm from './createArticle'
 import { Redirect } from 'react-router-dom';
 import CreateComment from '../Comments/createComment'
 
-const headers = {
-    'Authorization': `Bearer ${localStorage.getItem('token')}`
-};
-
 
 class allArticles extends Component {
 
@@ -19,11 +15,15 @@ class allArticles extends Component {
         update: false,
         updateArticle: null,
         id: "",
-        error : null
+        error : null,
+        reqHeader: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
     }
 
     componentDidMount(){
-        articleAPI.getArticles(headers)
+        
+        articleAPI.getArticles(this.state.reqHeader)
         .then(articles => {
             this.setState({
                 posts: articles.data,
@@ -33,7 +33,7 @@ class allArticles extends Component {
     }
 
     handleLikeClick = (id) => {
-        articleAPI.likeArticle(id, headers)
+        articleAPI.likeArticle(id, this.state.reqHeader)
         .then(() => console.log("Article aimé"))
         .catch((err) => console.log(err))
     }
@@ -43,7 +43,7 @@ class allArticles extends Component {
     }
 
     handleDeletePost = (id) => {
-        articleAPI.deleteArticle(id, headers)
+        articleAPI.deleteArticle(id, this.state.reqHeader)
         .then(() => console.log("Article supprimé"))
         .catch(err => console.log(err))
     }
@@ -87,7 +87,7 @@ class allArticles extends Component {
         return (
             <Fragment>
                 <CreateArticleForm />
-                {liste.reverse()}
+                {liste}
             </Fragment>
         )
     }

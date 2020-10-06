@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 import CommentForm from '../Form/Comment_form'
 import commentAPI from '../../Api/commentAPI'
 
-const headers = {
-    'Authorization': `Bearer ${localStorage.getItem('token')}`
-};
 
 class createComment extends Component {
 
     state = {
-        comment: ""
+        comment: "",
+        reqHeader: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
     }
 
     handleChange = (event) => {
@@ -20,7 +20,7 @@ class createComment extends Component {
     handleSubmit = (event) => {
         event.preventDefault()
 
-        commentAPI.postComments(this.props.id, this.state.comment, headers)
+        commentAPI.postComments(this.props.id, this.state.comment, this.state.reqHeader)
         .then(() => this.setState({comment: ""}))
         .catch(err => console.log(err))
     }

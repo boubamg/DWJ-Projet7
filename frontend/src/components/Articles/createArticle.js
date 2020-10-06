@@ -3,9 +3,6 @@ import articlesAPI from '../../Api/articlesAPI'
 import { Redirect } from 'react-router-dom'
 import ArticleForm from '../Form/Article_form'
 
-const headers = {
-    'Authorization': `Bearer ${localStorage.getItem('token')}`
-};
 
 class createArticle extends Component {
 
@@ -13,17 +10,19 @@ class createArticle extends Component {
         errors : [],
         content: '',
         attachment: null,
-        redirect: false
+        redirect: false,
+        reqHeader: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
     }
 
-    handleSubmit = (event) => {
-        event.preventDefault();
+    handleSubmit = () => {
 
         let data = new FormData();
         data.append("content", this.state.content);
         data.append("attachment", this.state.attachment);
 
-        articlesAPI.postArticles(data, headers)
+        articlesAPI.postArticles(data, this.state.reqHeader)
             .then(() => {
                 console.log("Article ajouté")
                this.setState({ redirect: true })

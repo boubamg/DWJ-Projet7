@@ -5,20 +5,20 @@ import ProfileComponent from './Profile/Profile'
 
 import UpdateProfileForm from './updateProfile'
 
-const headers = {
-    'Authorization': `Bearer ${localStorage.getItem('token')}`
-};
 
 class Profile extends React.Component {
 
     state = {
         user: {},
-        redirect: false
+        redirect: false,
+        reqHeader: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
     }
 
   componentDidMount() {
   
-    API.getProfile(headers)
+    API.getProfile(this.state.reqHeader)
     .then(user => {
         this.setState({
             user: user.data
@@ -31,7 +31,7 @@ class Profile extends React.Component {
   }
 
   handleDelete = () => {
-    API.deleteAccount(headers)
+    API.deleteAccount(this.state.reqHeader)
     .then(() => {
         console.log("Account was deleted")
         localStorage.clear()

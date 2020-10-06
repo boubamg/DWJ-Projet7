@@ -37,7 +37,6 @@ exports.createArticle = (req,res) => {
 
 // get all article
 exports.getAllArticles = (req,res) => {
-
     // get token and decode it
     let token = req.headers.authorization.split(' ')[1];
     let decodedToken = jwt.verify(token, tokenKey);
@@ -74,7 +73,10 @@ exports.getAllArticles = (req,res) => {
                     // comments not required
                     required: false
                 }
-            ]
+            ],
+            order: [
+                ['id', 'DESC'],
+            ],
             })
             .then(article =>  {
                 // if article not found

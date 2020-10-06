@@ -3,16 +3,16 @@ import { Redirect } from 'react-router-dom'
 import API from '../../Api/userAPI'
 import UpdateProfileForm from '../Form/updateProfile_form'
 
-const headers = {
-    'Authorization': `Bearer ${localStorage.getItem('token')}`
-};
 
 class updateProfile extends Component {
 
     state = {
         biography: "",
         profilePicture: null,
-        redirect: false
+        redirect: false,
+        reqHeader: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
     }
 
     handleChange = (e) => {
@@ -27,7 +27,7 @@ class updateProfile extends Component {
         data.append("biography", this.state.biography)
         data.append("profilePicture", this.state.profilePicture)
 
-        API.putProfile(data, headers)
+        API.putProfile(data, this.state.reqHeader)
         .then(() => {
             this.setState({redirect: true})
         })

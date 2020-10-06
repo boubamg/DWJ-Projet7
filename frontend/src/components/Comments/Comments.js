@@ -2,19 +2,19 @@ import React, { Component, Fragment } from 'react'
 import commentAPI from '../../Api/commentAPI'
 import Comment from './Comment'
 
-const headers = {
-    'Authorization': `Bearer ${localStorage.getItem('token')}`
-};
 
 class Comments extends Component {
 
     state = {
-        allComment: {}
+        allComment: {},
+        reqHeader: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
     }
 
     componentDidMount () {
         const id = this.props.articleId
-        commentAPI.getComments(id, headers)
+        commentAPI.getComments(id, this.state.reqHeader)
         .then(comments => {
             this.setState({allComment: comments.data})
         })
@@ -22,7 +22,7 @@ class Comments extends Component {
     }
 
     handleDeleteComment = (articleId, commentId) => {
-        commentAPI.deleteComments(articleId, commentId, headers)
+        commentAPI.deleteComments(articleId, commentId, this.state.reqHeader)
         .then(() => console.log("Comment was deleted"))
         .catch(err => console.log(err))
     }

@@ -3,17 +3,16 @@ import articlesAPI from '../../Api/articlesAPI'
 import { Redirect } from 'react-router-dom'
 import ArticleForm from '../Form/Article_form'
 
-const headers = {
-    'Authorization': `Bearer ${localStorage.getItem('token')}`
-};
-
 class updateArticle extends Component {
 
     state = {
         errors : [],
         content: '',
         attachment: null,
-        redirect: false
+        redirect: false,
+        reqHeader: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
     }
 
     handleSubmit = (event) => {
@@ -26,7 +25,7 @@ class updateArticle extends Component {
         const queryString =  window.location.href;
         let id = queryString.split('/update/')[1]
 
-        articlesAPI.putArticle(id, data, headers)
+        articlesAPI.putArticle(id, data, this.state.reqHeader)
             .then(() => {
                 console.log("Article mis à jour")
                 this.setState({ redirect: true })

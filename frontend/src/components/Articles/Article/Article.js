@@ -29,15 +29,15 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto"
   },
   media: {
-    // maxWidth: '100%',
-    // height: 0,
-    // paddingTop: '70%',
-    height: "40px",
-    marginLeft: "113px",
-    paddingLeft: "56.25%",
-    paddingTop: "56.25%", // 16:9,
-    marginTop: "20px",
-    width: "30px"
+    maxWidth: '100%',
+    height: 0,
+    paddingTop: '70%',
+    // height: "40px",
+    // marginLeft: "113px",
+    // paddingLeft: "56.25%",
+    // paddingTop: "56.25%", // 16:9,
+    // marginTop: "20px",
+    // width: "30px"
   },
   expand: {
     transform: 'rotate(0deg)',

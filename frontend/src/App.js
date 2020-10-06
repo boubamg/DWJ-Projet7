@@ -22,7 +22,7 @@ class App extends Component {
       <Fragment>
         <Router>
           
-          {localStorage.getItem("token") ? <Navbar /> : null}
+          <Navbar />
           
 
           <Switch>
