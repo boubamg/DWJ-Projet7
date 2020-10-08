@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import './Forms.css'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -29,12 +30,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignUp(
-    {firstnameValue, lastnameValue, emailValue, passwordValue, cpasswordValue , Change, Submit} ) {
+    {firstnameValue, lastnameValue, emailValue, passwordValue, cpasswordValue , Change, Submit, errors} ) {
   const classes = useStyles();
 
   return (
     <Container component="main" maxWidth="xs">
       <div className={classes.paper}>
+        {errors}
         <Typography component="h1" variant="h5">
             Inscription
         </Typography>

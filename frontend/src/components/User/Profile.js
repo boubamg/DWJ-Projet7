@@ -25,9 +25,6 @@ class Profile extends React.Component {
         })
     })
     .catch(err => console.log(err))
-
-    console.log(this.state.user)
-    console.log(this.state.user.lastname)
   }
 
   handleDelete = () => {

@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import userAPI from '../../../Api/userAPI'
 import {Redirect} from 'react-router-dom'
 import SignUp from '../../Form/Signup_form'
+import { Fragment } from 'react'
 //import './Connexion.css'
 
 
@@ -48,29 +49,35 @@ class Signup extends Component {
             this.setState({formIsValid: false})
             errors["confirmPassword"] = "La confirmation du mot de passe est incorrect"
         }
+
+        this.setState({errors})
         return formIsValid;
     }
 
-    handleSubmit = event => {
+    handleSubmit = (event) => {
         event.preventDefault()
+
         const { firstname, lastname, email, password} = this.state
 
-        if(!this.verification()){
-            return "Le formulaire contient des erreurs"
+        if(this.verification()) {
+            userAPI.signup(firstname, lastname ,email, password)
+            .then(() => {
+                this.setState({redirection: true})
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        } else {
+            console.log("Form has errors")
         }
 
-        userAPI.signup(firstname, lastname ,email, password)
-        .then(() => {
-            this.setState({redirection: true})
-        })
-        .catch(error => {
-            console.log(error);
-        });
+        this.setState({formIsValid: true})
+       
     }
 
     render () {
 
-        const {firstname, lastname, email, password, confirmPassword,redirection} = this.state;
+        const {firstname, lastname, email, password, confirmPassword, redirection, errors} = this.state;
 
         if(localStorage.getItem('token')){
             return <Redirect to='/post' />
@@ -80,17 +87,28 @@ class Signup extends Component {
             return <Redirect to='/'/>;
         }
 
+        let errorArray = Object.keys(errors)
+        .map(id => (
+            <p className="errors" key={id}>
+                {errors[id]}
+            </p>
+        ))
+
         return (
 
-            <SignUp
-            firstnameValue={firstname}
-            lastnameValue={lastname}
-            email={email}
-            passwordValue={password}
-            cpasswordValue={confirmPassword}
-            Change={this.handleChange}
-            Submit={this.handleSubmit} 
-            />
+            <Fragment>
+                <SignUp
+                firstnameValue={firstname}
+                lastnameValue={lastname}
+                email={email}
+                passwordValue={password}
+                cpasswordValue={confirmPassword}
+                Change={this.handleChange}
+                Submit={this.handleSubmit}
+                errors={errorArray}
+                />
+            </Fragment>
+            
 
         )
     }

@@ -10,7 +10,7 @@ class loginForm extends Component {
     state = {
         email: "",
         password: "",
-        isValidForm: true,
+        formIsValid: true,
         errors : {},
         redirection: false
     }
@@ -21,28 +21,26 @@ class loginForm extends Component {
     }
 
     verification = () => {
-        const {email, password, errors, isValidForm} = this.state;
+        const {email, password, errors, formIsValid} = this.state;
         if(!/^[A-Za-z0-9_.-]+@[A-Za-z0-9_.-]+\.[A-Za-z]{2,}$/.test(email)){
         errors['email'] = "L'email est invalide";
-        this.setState({isValidForm: false})
+        this.setState({formIsValid: false})
         }
 
         if(!password || password.length < 8 ){
-            errors["password"] = "Le mot de passe doit contenir au moins 8 caractères";
+            errors["password"] = "Le mot de passe est invalide";
             this.setState({formIsValid: false})
         }
-        return isValidForm;
+        this.setState({errors})
+        return formIsValid;
     }
 
     handleSubmit = (event) => {
         event.preventDefault()
         const {email, password} = this.state
 
-        if(!this.verification()){
-            return "Le formulaire contient des erreurs"
-        }
-
-        userAPI.login(email, password)
+        if(this.verification()){
+            userAPI.login(email, password)
             .then(response => { 
                 if(response.data.isAdmin){
                     localStorage.setItem('isAdmin', response.data.isAdmin)
@@ -55,6 +53,11 @@ class loginForm extends Component {
                 this.setState({redirection: true})
             })
             .catch(err => console.log(err))
+        } else {
+            console.log("Form has errors")
+        }
+
+        this.setState({formIsValid: true})
     }
 
     render () {
@@ -67,7 +70,14 @@ class loginForm extends Component {
             return <Redirect to='/post'/>;
         }
 
-        let {email, password} = this.state
+        let {email, password, errors} = this.state
+
+        let errorArray = Object.keys(errors)
+        .map(id => (
+            <p className="errors" key={id}>
+                {errors[id]}
+            </p>
+        ))
 
         return (
 
@@ -76,6 +86,7 @@ class loginForm extends Component {
             passwordValue={password}
             Change={this.handleChange} 
             Submit={this.handleSubmit}
+            errors={errorArray}
             />
         )
     }

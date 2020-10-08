@@ -25,12 +25,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn({emailValue, passwordValue, Change, Submit}) {
+export default function SignIn({emailValue, passwordValue, Change, Submit, errors}) {
   const classes = useStyles();
 
   return (
     <Container component="main" maxWidth="xs">
       <div className={classes.paper}>
+        {errors}
         <Typography component="h1" variant="h5">
           Connexion
         </Typography>

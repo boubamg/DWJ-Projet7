@@ -15,6 +15,15 @@ class updateArticle extends Component {
         }
     }
 
+    handleChange = (event) => {
+        const { name, value} = event.target
+        this.setState({ [name]: value })
+    }
+
+    handleFileChange = (e) => {  
+        this.setState({ attachment: e.target.files[0] });
+    }
+
     handleSubmit = (event) => {
         event.preventDefault();
 
@@ -25,21 +34,14 @@ class updateArticle extends Component {
         const queryString =  window.location.href;
         let id = queryString.split('/update/')[1]
 
+        console.log(id)
+
         articlesAPI.putArticle(id, data, this.state.reqHeader)
             .then(() => {
                 console.log("Article mis à jour")
                 this.setState({ redirect: true })
             })
             .catch(err => console.log(err))
-    }
-
-    handleChange = (event) => {
-        const { name, value} = event.target
-        this.setState({ [name]: value })
-    }
-
-    handleFileChange = (e) => {  
-        this.setState({ attachment: e.target.files[0] });
     }
 
     render () {
@@ -55,7 +57,7 @@ class updateArticle extends Component {
         return (
             <Fragment>
                 <ArticleForm 
-                submit={this.handleSubmit}
+                Submit={this.handleSubmit}
                 contentValue={this.state.content}
                 contentChange={this.handleChange}
                 attachmentChange={this.handleFileChange}
