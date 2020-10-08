@@ -21,7 +21,7 @@ Frontend:
 Rendez-vous sur `http://localhost:3000/`.
 
 Backend:
-> éxécuter `sequelize db:create` puis `sequelize db:migrate`.
+> éxécuter `npx sequelize db:create` puis `npx sequelize db:migrate`.
 Créer son dossier `images`.
 Démarrer `nodemon start` pour avoir accès au serveur de développement.
 L'application va se recharger automatiquement si vous modifiez un fichier source.
