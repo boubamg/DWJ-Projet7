@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function UpdateProfile({biographyValue, biographyChange, profilePictureChange, Submit}) {
+export default function UpdateProfile({biographyValue, biographyChange, profilePictureChange, fileName, Submit}) {
   const classes = useStyles();
   
   return (
@@ -57,7 +57,7 @@ export default function UpdateProfile({biographyValue, biographyChange, profileP
                 id="biography"
                 variant="outlined"
                 multiline
-                placeholder="Que voulez vous dire ?"
+                placeholder="Biographie..."
                 value={biographyValue}
                 onChange={biographyChange}
                 />
@@ -75,6 +75,8 @@ export default function UpdateProfile({biographyValue, biographyChange, profileP
                     <PhotoCamera />
                 </Button>
             </label>
+
+            {fileName}
             
             <Button
                 type="submit"

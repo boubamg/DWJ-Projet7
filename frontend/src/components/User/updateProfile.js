@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { Redirect } from 'react-router-dom'
 import API from '../../Api/userAPI'
 import UpdateProfileForm from '../Form/updateProfile_form'
@@ -9,7 +9,7 @@ class updateProfile extends Component {
     state = {
         biography: "",
         profilePicture: null,
-        redirect: false,
+        fileName: "",
         reqHeader: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -21,44 +21,45 @@ class updateProfile extends Component {
     }
 
     handleSubmit = (e) => {
-        e.preventDefault()
+        
 
         let data = new FormData()
         data.append("biography", this.state.biography)
         data.append("profilePicture", this.state.profilePicture)
 
         API.putProfile(data, this.state.reqHeader)
-        .then(() => {
-            this.setState({redirect: true})
-        })
+        .then()
         .catch(err => {
             console.log(err)
         })
     }
 
     profilePictureChange = (e) => {
-        this.setState({ profilePicture: e.target.files[0]})
+        this.setState({ profilePicture: e.target.files[0], fileName: e.target.files[0].name})
+
+        
     }
 
     render () {
 
-        let { biography, redirect } = this.state
+        let { biography, profilePicture, fileName } = this.state
 
         if(!localStorage.getItem('token')){
             return <Redirect to='/' />
         }
 
-        if(redirect){
-            return <Redirect to='/profile' />
-        }
-
         return (
-            <UpdateProfileForm
-            biographyValue={biography}
-            biographyChange={this.handleChange}
-            profilePictureChange={this.profilePictureChange} 
-            Submit={this.handleSubmit}
-            />
+            <Fragment>
+                <UpdateProfileForm
+                biographyValue={biography}
+                biographyChange={this.handleChange}
+                profilePictureChange={this.profilePictureChange} 
+                Submit={this.handleSubmit}
+                fileName={fileName}
+                />
+                
+            </Fragment>
+            
         )
     }
 }
