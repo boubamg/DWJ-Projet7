@@ -23,7 +23,13 @@ class Comments extends Component {
 
     handleDeleteComment = (articleId, commentId) => {
         commentAPI.deleteComments(articleId, commentId, this.state.reqHeader)
-        .then(() => console.log("Comment was deleted"))
+        .then(res => {
+            let allComment = [...this.state.allComment]
+            let comment = allComment.find(comment => comment.id === commentId)
+            var removeIndex = allComment.map(function(item) { return item.id; }).indexOf(comment.id);
+            allComment.splice(removeIndex, 1);
+            this.setState({allComment})
+        })
         .catch(err => console.log(err))
     }
 

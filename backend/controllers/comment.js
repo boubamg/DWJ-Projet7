@@ -158,7 +158,7 @@ exports.deleteComment = (req,res) => {
                             }
                             // delete comment
                             comment.destroy()
-                            .then(() => res.status(201).json({ message: "Comment was deleted" }))
+                            .then(() => res.status(200).json({ message: "Comment was deleted" }))
                             .catch(error => res.status(500).json({ error : `${error}` }))
                         })
                         .catch(error => res.status(500).json({ error : `${error}` }))

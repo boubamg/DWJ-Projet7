@@ -49,10 +49,6 @@ class allArticles extends Component {
         .catch((err) => console.log(err))
     }
 
-    handleInfoClick = (id) => {
-        this.setState({id, redirect: true})
-    }
-
     handleDeletePost = (id) => {
         articleAPI.deleteArticle(id, this.state.reqHeader)
         .then(() => console.log("Article supprimé"))
