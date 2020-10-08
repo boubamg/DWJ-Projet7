@@ -9,6 +9,7 @@ class updateArticle extends Component {
         errors : [],
         content: '',
         attachment: null,
+        fileName: '',
         redirect: false,
         reqHeader: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -21,7 +22,7 @@ class updateArticle extends Component {
     }
 
     handleFileChange = (e) => {  
-        this.setState({ attachment: e.target.files[0] });
+        this.setState({ attachment: e.target.files[0] , fileName: e.target.files[0].name});
     }
 
     handleSubmit = (event) => {
@@ -61,6 +62,7 @@ class updateArticle extends Component {
                 contentValue={this.state.content}
                 contentChange={this.handleChange}
                 attachmentChange={this.handleFileChange}
+                fileName={this.state.fileName}
                 buttonContent="Mettre à jour"
                 /> 
             </Fragment>

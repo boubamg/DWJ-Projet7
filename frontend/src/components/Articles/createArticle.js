@@ -10,6 +10,7 @@ class createArticle extends Component {
         errors : [],
         content: '',
         attachment: null,
+        fileName: "",
         redirect: false,
         reqHeader: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -36,7 +37,7 @@ class createArticle extends Component {
     }
 
     handleFileChange = (e) => {  
-        this.setState({ attachment: e.target.files[0] });
+        this.setState({ attachment: e.target.files[0] , fileName: e.target.files[0].name});
     }
 
     render () {
@@ -54,6 +55,7 @@ class createArticle extends Component {
            contentValue={this.state.content}
            contentChange={this.handleChange}
            attachmentChange={this.handleFileChange}
+           fileName={this.state.fileName}
            Submit={this.handleSubmit}
            buttonContent="Publier"
            /> 

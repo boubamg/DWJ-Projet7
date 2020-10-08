@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function Signup({buttonContent, contentValue, contentChange, attachmentChange, Submit}) {
+export default function Signup({buttonContent, contentValue, contentChange, attachmentChange, fileName, Submit}) {
   const classes = useStyles();
   
   return (
@@ -76,6 +76,8 @@ export default function Signup({buttonContent, contentValue, contentChange, atta
                     <PhotoCamera />
                 </Button>
             </label>
+
+            {fileName}
             
             <Button
                 type="submit"

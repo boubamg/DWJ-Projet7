@@ -42,7 +42,7 @@ class updateProfile extends Component {
 
     render () {
 
-        let { biography, profilePicture, fileName } = this.state
+        let { biography, fileName } = this.state
 
         if(!localStorage.getItem('token')){
             return <Redirect to='/' />
