@@ -28,13 +28,24 @@ class allArticles extends Component {
             this.setState({
                 posts: articles.data,
                 isLoaded: true})
+                console.log(this.state.posts[0])
         })
         .catch(err => console.log(err))
     }
 
     handleLikeClick = (id) => {
         articleAPI.likeArticle(id, this.state.reqHeader)
-        .then(() => console.log("Article aimé"))
+        .then((res) => {
+            console.log(res)
+            let posts = [...this.state.posts]
+            let post = posts.find(post => post.id === id)
+            if(res.status === 200){
+                post.likes += 1
+            } else {
+                post.likes -= 1
+            }
+            this.setState({posts})
+        })
         .catch((err) => console.log(err))
     }
 
