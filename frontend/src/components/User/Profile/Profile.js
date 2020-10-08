@@ -16,11 +16,12 @@ const Profile = ({profilePicture, lastname, firstname, email, biography, compone
                   <Row className="justify-content-center">
                     <Col className="order-lg-2" lg="3">
                       <div className="card-profile-image">
-                          <img
-                            alt="..."
+
+                        {profilePicture ?  <img
                             className="rounded-circle"
                             src={profilePicture}
-                          />
+                          /> : null}
+                         
                       </div>
                     </Col>
                     

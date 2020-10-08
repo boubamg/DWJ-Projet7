@@ -34,7 +34,7 @@ class allArticles extends Component {
 
     handleLikeClick = (id) => {
         articleAPI.likeArticle(id, this.state.reqHeader)
-        .then(() => console.log("Article aimé"))
+        .then((res) => console.log(res))
         .catch((err) => console.log(err))
     }
 
