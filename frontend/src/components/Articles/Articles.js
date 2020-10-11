@@ -22,14 +22,13 @@ class allArticles extends Component {
     }
 
     componentDidMount(){
-        // console.log(this.props.location)
 
         articleAPI.getArticles(this.state.reqHeader)
         .then(articles => {
             
             this.setState({
                 posts: articles.data.article,
-                isAdmin: articles.data.isAdmin }, () => console.log(this.state.posts[0].id))
+                isAdmin: articles.data.isAdmin })
         })
         .catch(err => console.log(err))
     }
@@ -52,7 +51,14 @@ class allArticles extends Component {
 
     handleDeletePost = (id) => {
         articleAPI.deleteArticle(id, this.state.reqHeader)
-        .then(() => console.log("Article supprimé"))
+        .then(() => {
+            let posts = [...this.state.posts]
+            let deletePost = posts.find(posts => posts.id === id)
+            var removeIndex = posts.map(function(item) { return item.id; }).indexOf(deletePost.id);
+            posts.splice(removeIndex, 1);
+            this.setState({posts})
+            console.log("Article supprimé")
+        })
         .catch(err => console.log(err))
     }
 
