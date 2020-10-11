@@ -33,12 +33,21 @@ const useStyles = makeStyles((theme) => ({
     height: 0,
     margin: "0 auto",
     paddingTop: '70%',
+    marginBottom: '30px',
     // height: "40px",
     // marginLeft: "113px",
     // paddingLeft: "56.25%",
     // paddingTop: "56.25%", // 16:9,
     // marginTop: "20px",
     // width: "30px"
+  },
+  content: {
+    maxWidth: '80%',
+    margin: "0 auto",
+  },
+  actionIcons: {
+    maxWidth: '70%',
+    margin: "0 auto",
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -94,14 +103,14 @@ export default function Article(
         null}
       
       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
+        <Typography variant="body2" color="textSecondary" component="p" className={classes.content}>
             {content}
         </Typography>
       </CardContent>
 
       {/* END Content */}
 
-      <CardActions disableSpacing>
+      <CardActions disableSpacing className={classes.actionIcons}>
         <IconButton aria-label="likes" onClick={handleLikeClick}>
           <FavoriteIcon color="secondary" /> {likes}
         </IconButton>
