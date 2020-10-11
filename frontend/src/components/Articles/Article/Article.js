@@ -22,15 +22,16 @@ import Comments from '../../Comments/Comments'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 500,
+    maxWidth: '60%',
     boxShadow: " -7px 11px 34px 15px rgba(0,0,0,0.24);",
     marginTop: theme.spacing(8),
     marginBottom: theme.spacing(8),
     margin: "auto"
   },
   media: {
-    maxWidth: '100%',
+    maxWidth: '70%',
     height: 0,
+    margin: "0 auto",
     paddingTop: '70%',
     // height: "40px",
     // marginLeft: "113px",
@@ -55,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Article(
-  {creator, profilePicture, name, likes, attachment, content, handleLikeClick, commentFormComponent, handleDelete, handleUpdate, articleId}) {
+  {isAdmin, creator, profilePicture, name, likes, attachment, content, handleLikeClick, commentFormComponent, handleDelete, handleUpdate, articleId}) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -138,7 +139,7 @@ export default function Article(
         </IconButton>
       </div> : null}
 
-      {localStorage.getItem("isAdmin") ? 
+      {isAdmin ? 
       <div className="Actions">
       <IconButton onClick={handleDelete}>
         <DeleteIcon color="secondary" style={{ fontSize: 40 }} />

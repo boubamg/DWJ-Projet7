@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import articleAPI from '../../Api/articlesAPI'
 import Article from './Article/Article';
 import CreateArticleForm from './createArticle'
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import CreateComment from '../Comments/createComment'
 
 
@@ -11,24 +11,25 @@ class allArticles extends Component {
     state = {
         posts: {},
         isLoaded: false,
-        redirect: false,
         update: false,
         updateArticle: null,
-        id: "",
         error : null,
+        isAdmin: false,
+        id: "",
         reqHeader: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
+        },
     }
 
     componentDidMount(){
-        
+        // console.log(this.props.location)
+
         articleAPI.getArticles(this.state.reqHeader)
         .then(articles => {
+            
             this.setState({
-                posts: articles.data,
-                isLoaded: true})
-                console.log(this.state.posts[0])
+                posts: articles.data.article,
+                isAdmin: articles.data.isAdmin }, () => console.log(this.state.posts[0].id))
         })
         .catch(err => console.log(err))
     }
@@ -39,7 +40,7 @@ class allArticles extends Component {
             console.log(res)
             let posts = [...this.state.posts]
             let post = posts.find(post => post.id === id)
-            if(res.status === 200){
+            if(res.status === 201){
                 post.likes += 1
             } else {
                 post.likes -= 1
@@ -61,11 +62,8 @@ class allArticles extends Component {
 
     render () {
 
-        const {posts, redirect, update, updateArticle, id} = this.state
+        const {posts, update, updateArticle, isAdmin} = this.state
 
-        if(redirect){
-            return <Redirect to={"/post/" + id} />
-        }
 
         if(update){
             return <Redirect to={'/post/update/' + updateArticle } />
@@ -73,7 +71,6 @@ class allArticles extends Component {
 
         const liste = Object.keys(posts)
         .map(id => (
-            // <a href={'/post/' + posts[id].id}>
             <Article 
             key={posts[id].id}
             profilePicture={posts[id].User.profilePicture}
@@ -87,8 +84,8 @@ class allArticles extends Component {
             commentFormComponent={<CreateComment id={posts[id].id} />}
             creator={posts[id].UserId}
             articleId={posts[id].id}
+            isAdmin={isAdmin}
             />
-            // </a>
         ))
 
         return (
@@ -100,4 +97,4 @@ class allArticles extends Component {
     }
 }
 
-export default allArticles
+export default withRouter(allArticles)

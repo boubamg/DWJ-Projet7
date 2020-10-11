@@ -76,17 +76,14 @@ exports.login = (req,res) => {
     // User in database ?
     models.User.findOne( { where: { email : email } })
         .then(user => {
-
             // no
             if(!user){
                 return res.status(404).json({ error: "User not found"})
             }
-
             // user is deactivate
             if(!user.isActive){
                 return res.status(405).json({ error: "Your account is deactivate, please contact administrator"})
             }
-
             // yes 
             bcrypt.compare(password, user.password)
             .then(valid => {
@@ -101,8 +98,7 @@ exports.login = (req,res) => {
                     token: jwt.sign(
                         {userId : user.id},
                         tokenKey,
-                        { expiresIn: '12h'})
-                })
+                        { expiresIn: '12h'}) })
             })
             .catch(err => res.status(500).json({ error : `${err}` }))
         })

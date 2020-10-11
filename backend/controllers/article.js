@@ -83,7 +83,8 @@ exports.getAllArticles = (req,res) => {
                 if(!article){
                     return res.status(404).json({ error: "Article not found" })
                 }
-                res.status(200).send(article)
+                let isAdmin = user.isAdmin
+                res.status(200).send({article, isAdmin})
             })
             .catch(error => res.status(400).json({ error: `${error}` }));
 

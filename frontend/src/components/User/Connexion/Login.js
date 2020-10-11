@@ -10,6 +10,7 @@ class loginForm extends Component {
     state = {
         email: "",
         password: "",
+        admin: false,
         formIsValid: true,
         errors : {},
         redirection: false
@@ -43,12 +44,11 @@ class loginForm extends Component {
             userAPI.login(email, password)
             .then(response => { 
                 if(response.data.isAdmin){
-                    localStorage.setItem('isAdmin', response.data.isAdmin)
+                    this.setState({admin: true})
                 }
                 localStorage.setItem('token', response.data.token)
                 localStorage.setItem('userId', response.data.userId)
                 
-                console.log(response)
                 // redirect
                 this.setState({redirection: true})
             })
@@ -68,6 +68,7 @@ class loginForm extends Component {
         
         if(this.state.redirection){
             return <Redirect to='/post'/>;
+
         }
 
         let {email, password, errors} = this.state

@@ -37,8 +37,8 @@ export default function CommentForm({commentValue, commentChange, commentSubmit}
         
         <form className={classes.form} onSubmit={commentSubmit}>
         <Grid container justify="center" spacing={0}>
-            <Grid item xs={8}>
-                <TextField
+           
+            <TextField
                 name="comment"
                 id="comment"
                 multiline
@@ -46,10 +46,8 @@ export default function CommentForm({commentValue, commentChange, commentSubmit}
                 value={commentValue}
                 onChange={commentChange}
                 className={classes.comment}
-                required
-                />
-            </Grid>
-            <Grid item xs={4}>
+                required />
+            
             <Button
                 type="submit"
                 fullWidth
@@ -58,7 +56,7 @@ export default function CommentForm({commentValue, commentChange, commentSubmit}
                 className={classes.submit}>
                 Commenter
             </Button> 
-            </Grid>            
+                    
         </Grid>
         </form>
     </div>
