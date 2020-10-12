@@ -6,6 +6,7 @@ import Comment from './Comment'
 class Comments extends Component {
 
     state = {
+        isAdmin: false,
         allComment: {},
         reqHeader: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -16,7 +17,7 @@ class Comments extends Component {
         const id = this.props.articleId
         commentAPI.getComments(id, this.state.reqHeader)
         .then(comments => {
-            this.setState({allComment: comments.data})
+            this.setState({allComment: comments.data.comments, isAdmin: comments.data.isAdmin })
         })
         .catch(err => console.log(err))
     }
@@ -46,6 +47,7 @@ class Comments extends Component {
                 comment={allComment[id].commentText}
                 handleDeleteComment={() => {this.handleDeleteComment(allComment[id].ArticleId,allComment[id].id)}}
                 creator={allComment[id].UserId}
+                isAdmin={this.state.isAdmin}
             />
         ))
 

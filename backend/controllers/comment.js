@@ -70,7 +70,10 @@ exports.getComments = (req,res) => {
                             }
                         }
                     })
-                        .then(comments => res.status(200).send(comments))
+                        .then(comments => {
+                            let isAdmin = user.isAdmin
+                            res.status(200).send({comments, isAdmin})
+                        })
                         .catch(error => res.status(500).json({ error : `${error}` }))
                 })
                 .catch(error => res.status(500).json({ error : `${error}` }))

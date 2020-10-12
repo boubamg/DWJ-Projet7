@@ -15,11 +15,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Comment({creator, profilePicture, name, comment, handleDeleteComment}) {
+export default function Comment({isAdmin, creator, profilePicture, name, comment, handleDeleteComment}) {
   const classes = useStyles();
 
   const canUpdate = () => {
-    if(parseInt(localStorage.getItem("userId")) === creator ||  localStorage.getItem("isAdmin")){
+    if(parseInt(localStorage.getItem("userId")) === creator ||  isAdmin ){
       return true
     }
     return false
